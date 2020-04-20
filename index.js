@@ -4,7 +4,7 @@ const { getNostalgia } = require('./controllers/nostalgia')
 
 const app = express()
 
-app.get('/movies', getNostalgia)
+app.get('/', getNostalgia)
 
 app.use(express.static('docs'))
 app.get('/docs', (request, response) => response.status(404).sendFile(path.join(__dirname, 'docs', 'index.html')))
