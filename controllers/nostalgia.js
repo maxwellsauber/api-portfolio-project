@@ -5,11 +5,20 @@ const getNostalgia = (request, response) => {
 }
 
 const getToys = (request, response) => {
-  return response.send(nostalgia.toys)
+  const matchingItems = nostalgia.filter((item) => item.category === 'toys')
+
+  return matchingItems
+    ? response.send(matchingItems)
+    : response.sendStatus(404)
 }
 
+// duplicate to getToys... playing with data
 const getCartoons = (request, response) => {
-  return response.send(nostalgia.cartoons)
+  const matchingItems = nostalgia.filter((item) => item.category === 'cartoons')
+
+  return matchingItems
+    ? response.send(matchingItems)
+    : response.sendStatus(404)
 }
 
 module.exports = { getNostalgia, getToys, getCartoons }

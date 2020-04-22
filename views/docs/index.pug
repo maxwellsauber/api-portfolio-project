@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+html(lang="en")
+ include partials/head
+
+body(data-spy="scroll" data-target="#scroll-spy")
+  div.hero-wrapper
+    div.container.hero
+      div.row
+        div.col-md-12
+          h1 Remember Your Childhood!
+          p.lead Here's an API that'll remind you of the toys and cartoons of your childhood
+
+  div.container
+    div.row
+      include partials/side-nav
+
+      div.cool-things.col-md-9
+        div#cartoon-overview
+          h2 Cartoons
+          p Overview
+      
+        div#cartoon-create
+          h2 Cartoons
+          p Cartoon create
+
+        div#cartoon-read
+          h2 Cartoons
+          p Cartoon read
+
+        div#cartoon-update
+          h2 Cartoons
+          p Cartoon update
+
+        div#cartoon-delete
+          h2 Cartoons
+          p Cartoon delete
+
+        div#toys-overview
+          h2 Toys
+          p Overview
+      
+        div#toys-create
+          h2 Toys
+          p Toys create
+
+        div#toys-read
+          h2 Toys
+          p Toys read
+
+        div#toys-update
+          h2 Toys
+          p Toys update
+
+        div#toys-delete
+          h2 Toys
+          p Toys delete
+
+include partials/scripts
