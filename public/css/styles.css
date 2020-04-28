@@ -1,7 +1,17 @@
-.cool-things div{
+.cool-things section{
   background-color: rgb(212, 212, 212);
   margin-bottom: 30px;
   padding:30px;
+  min-height: 250px;
+}
+.cool-things .overview-heading{
+  background-color: #4b70a7;
+  color:#fff;
+  margin-bottom: 3px;
+  padding: 10px;
+}
+.overview-heading h2{
+   font-size: 1.3rem;
 }
 .hero-wrapper{ 
 	background-color: #303a54;
@@ -10,10 +20,16 @@
 	padding: 15px 0 0 0;
   text-shadow: 1px 1px #111;
 }    
-div.col-md-9 div { /* - placeholder height - */
-      min-height: 250px;
-}
+
 #scroll-spy ul.nav-pills { /* - BS Fix for side nav overlap and scrolling highlight - */
     position: sticky;
     top:10px;
+}
+.nav-pills .nav-link.active{
+  background-color: #4b70a7;
+}
+
+.code{
+    color: #e83e8c;
+    word-wrap: break-word;
 }

@@ -1,24 +1,41 @@
 nav#scroll-spy.col-md-3
   ul.nav.nav-pills.flex-column
     li.nav-item
-      a.nav-link.active(href=`#cartoon-overview`) Cartoons
-    ul
-      li 
-        a.nav-link(href=`#cartoon-create`) Create
-      li
-         a.nav-link(href=`#cartoon-read`) Read
-      li 
-         a.nav-link(href=`#cartoon-update`) Update
-      li 
-        a.nav-link(href=`#cartoon-delete`) Delete
+      a.nav-link.active(href=`#general`) General Info
+    
     li.nav-item
-      a.nav-link(href=`#toys-overview`) Toys
+      a.nav-link(href=`#get-overview`) GET
     ul
       li 
-        a.nav-link(href=`#toys-create`) Create
+        a.nav-link(href='#get-root') /
+      li 
+        a.nav-link(href='#get-slug') /{slug}
       li
-         a.nav-link(href=`#toys-read`) Read
+         a.nav-link(href='#get-category') /category/{category}
       li 
-         a.nav-link(href=`#toys-update`) Update
-      li 
-        a.nav-link(href=`#toys-delete`) Delete
+         a.nav-link(href='#get-decade') /decade/{decade}
+    
+    
+    li.nav-item
+      a.nav-link(href=`#post-overview`) POST
+      ul
+        li 
+          a.nav-link(href='#post-root') /
+
+    li.nav-item
+      a.nav-link(href=`#put-overview`) PUT
+      ul
+        li 
+          a.nav-link(href='#put-root') /{slug}
+    
+    li.nav-item
+      a.nav-link(href=`#patch-overview`) PATCH
+      ul
+        li 
+          a.nav-link(href='#patch-root') /{slug}/{attribute}
+
+    li.nav-item
+      a.nav-link(href=`#delete-overview`) DELETE
+      ul
+        li 
+          a.nav-link(href='#delete-root') /{slug}

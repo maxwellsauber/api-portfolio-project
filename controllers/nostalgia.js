@@ -1,24 +1,39 @@
 const nostalgia = require('../nostalgia')
 
+// Below are TEST controllers to determine API Routes. Need to be consolidated
+
 const getNostalgia = (request, response) => {
   return response.send(nostalgia)
 }
 
-const getToys = (request, response) => {
-  const matchingItems = nostalgia.filter((item) => item.category === 'toys')
+const getCategory = (request, response) => {
+  const { category } = request.params
 
-  return matchingItems
+  const matchingItems = nostalgia.filter((item) => item.category === category)
+
+  return matchingItems.length > 0
     ? response.send(matchingItems)
-    : response.sendStatus(404)
+    : response.status(404).send(`Nothing to see at Category '${category}'`)
 }
 
-// duplicate to getToys... playing with data
-const getCartoons = (request, response) => {
-  const matchingItems = nostalgia.filter((item) => item.category === 'cartoons')
+const getDecade = (request, response) => {
+  const { decade } = request.params
 
-  return matchingItems
+  const matchingItems = nostalgia.filter((item) => item.decade === decade)
+
+  return matchingItems.length > 0
     ? response.send(matchingItems)
-    : response.sendStatus(404)
+    : response.status(404).send(`Nothing to see at Decade '${decade}'`)
 }
 
-module.exports = { getNostalgia, getToys, getCartoons }
+const getSlug = (request, response) => {
+  const { slug } = request.params
+
+  const matchingItems = nostalgia.filter((item) => item.slug === slug)
+
+  return matchingItems.length > 0
+    ? response.send(matchingItems)
+    : response.status(404).send(`Nothing to see at Slug '${slug}'`)
+}
+
+module.exports = { getNostalgia, getCategory, getSlug, getDecade }

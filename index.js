@@ -1,18 +1,22 @@
 const express = require('express')
 // const path = require('path')
-const { getNostalgia, getToys, getCartoons } = require('./controllers/nostalgia')
+const { getNostalgia, getCategory, getSlug, getDecade } = require('./controllers/nostalgia')
 
 const app = express()
 
 app.get('/', getNostalgia)
 
-app.get('/toys', getToys)
-
-app.get('/cartoons', getCartoons) // Bot calling duplicaate functions thing.... fix this............ focus on what we want the damn API TO DO!
-
 app.set('view engine', 'pug')
 app.use(express.static('public'))
 app.get('/docs', (request, response) => response.render('docs/index'))
+
+app.get('/category/:category', getCategory)
+
+app.get('/decade/:decade', getDecade)
+
+app.get('/:slug', getSlug)
+
+
 
 app.all('*', (request, response) => response.status(404).send('Page Not Found'))
 
