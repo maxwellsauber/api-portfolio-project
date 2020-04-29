@@ -12,11 +12,11 @@ section{
 }
 
 .code{
-    color: #e83e8c;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1em;
-    padding: 10px 20px;
-    word-wrap: break-word;
+  color: #e83e8c;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1em;
+  padding: 10px 20px;
+  word-wrap: break-word;
 }
 
 .hero-wrapper{ 
