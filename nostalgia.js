@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-// THINK ABOUT - how to handle situations where TOYs overlap TOONs - e.g TMMT, Transormers, etc. // Array of category???????????????
 const nostalgia = [{
   name: 'GAK',
   category: 'toys',

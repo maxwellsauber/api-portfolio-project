@@ -1,6 +1,5 @@
+// TO DO in part Two: Consolidate TEST controllers. Switch from JSON to MySQL for data.
 const nostalgia = require('../nostalgia')
-
-// Below are TEST controllers to determine API Routes. Need to be consolidated
 
 const getNostalgia = (request, response) => {
   return response.send(nostalgia)

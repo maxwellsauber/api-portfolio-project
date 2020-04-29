@@ -1,5 +1,4 @@
 const express = require('express')
-// const path = require('path')
 const { getNostalgia, getCategory, getSlug, getDecade } = require('./controllers/nostalgia')
 
 const app = express()
@@ -15,8 +14,6 @@ app.get('/category/:category', getCategory)
 app.get('/decade/:decade', getDecade)
 
 app.get('/:slug', getSlug)
-
-
 
 app.all('*', (request, response) => response.status(404).send('Page Not Found'))
 

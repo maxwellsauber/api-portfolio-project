@@ -1,14 +1,8 @@
-h2, h3{
-  color: #111111;
-}
+h2, h3{ color: #111111; }
 
-h2{
-  font-size: 2rem;
-}
+h2{ font-size: 2rem; }
 
-h3{
-  font-size: 1.4rem;
-}
+h3{ font-size: 1.4rem; }
 
 section{
   background-color: #f8f8f8;
