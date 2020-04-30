@@ -28,36 +28,36 @@ const nostalgia = [{
   tags: ['plastic', 'rehair', 'face'],
   slug: 'cabage-patch-kids'
 }, {
+  name: 'Ren and Stimpy',
   category: 'cartoons',
   decade: '1990',
-  name: 'Ren and Stimpy',
   description: 'Cat and Dog do weird stuff',
   characters: ['Ren', 'Stimpy'],
-  tags: ['extreme', '...'],
+  tags: ['bizzare', 'raunchy', 'graphic'],
   slug: 'ren-and-stimpy'
 }, {
+  name: 'Rocko\'s Moddern Life',
   category: 'cartoons',
   decade: '1990',
-  name: 'Rocko\'s Moddern Life',
   description: 'Wallaby and a Cow do weird stuff',
   characters: ['Rocko', 'Heffer'],
-  tags: ['extreme', '...'],
+  tags: ['situational', 'realistic', 'odd'],
   slug: 'rockos-moddern-life'
 }, {
+  name: 'Duck Tales',
   category: 'cartoons',
   decade: '1980',
-  name: 'Duck Tales',
   description: 'Do Do Do Do - A Woooo hooo',
   characters: ['Hewy', 'Dewy', 'Louie'],
-  tags: ['extreme', '...'],
+  tags: ['adventure', 'mystery', 'duck', 'tales'],
   slug: 'duck-tales'
 }, {
+  name: 'Teenage Mutant Ninja Turtles',
   category: 'cartoons',
   decade: '1980',
-  name: 'Teenage Mutant Ninja Turtles',
   description: 'Turtles fight aburd villans, and eat pizza. Their dad is a rat',
-  characters: ['Shredder', '...'],
-  tags: ['extreme', '...'],
+  characters: ['Leonardo', 'Raphael', 'Donatello', 'Michelangelo', 'Splinter', 'Shredder'],
+  tags: ['extreme', 'pizza', 'turtles', 'half-shell'],
   slug: 'teenage-mutant-ninja-turtles'
 }]
 
