@@ -73,7 +73,7 @@ module.exports = {
         allowNull: false,
         references: { model: 'categories', key: 'id' }
       },
-      nostalgiaId: {
+      nostalgiaItemId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         references: { model: 'nostalgiaItems', key: 'id' }
@@ -112,7 +112,7 @@ module.exports = {
         allowNull: false,
         references: { model: 'decades', key: 'id' }
       },
-      nostalgiaId: {
+      nostalgiaItemId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         references: { model: 'nostalgiaItems', key: 'id' }
@@ -131,7 +131,7 @@ module.exports = {
         primaryKey: true,
         references: { model: 'tags', key: 'id' }
       },
-      nostalgiaId: {
+      nostalgiaItemId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         references: { model: 'nostalgiaItems', key: 'id' }

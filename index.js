@@ -5,12 +5,12 @@ const { getAllNostalgiaItems, getNostalgiaItemsByParamWithAllLinkedData } = requ
 
 const app = express()
 
-app.get('/', getAllNostalgiaItems)
-app.get('/:param', getNostalgiaItemsByParamWithAllLinkedData)
-
 app.set('view engine', 'pug')
 app.use(express.static('public'))
 app.get('/docs', (request, response) => response.render('docs/index'))
+
+app.get('/', getAllNostalgiaItems)
+app.get('/:param', getNostalgiaItemsByParamWithAllLinkedData)
 
 app.get('/category/:category', getCategory)
 

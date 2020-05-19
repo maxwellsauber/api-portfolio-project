@@ -15,12 +15,12 @@ const getNostalgiaItemsByParamWithAllLinkedData = async (request, response) => {
   try {
     const { param } = request.params
     const matchingItems = await models.nostalgiaItems.findAll({
-      include: [{
-        // include: [{ model: models.characters }],
-        // model: models.tags
-        model: models.characters
-
-      }],
+      include: [
+        { model: models.categories },
+        { model: models.characters },
+        { model: models.tags },
+        { model: models.decades }
+      ],
       where: {
         [models.Op.or]: [
           { id: { [models.Op.like]: param } },

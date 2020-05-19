@@ -39,15 +39,15 @@ module.exports = {
     ])
 
     await queryInterface.bulkInsert('nostalgiaCategories', [
-      { categoryId: 1, nostalgiaId: 1 }, /* Cartoon, TMNT */
-      { categoryId: 2, nostalgiaId: 1 }, /* Toy, TMNT */
-      { categoryId: 3, nostalgiaId: 1 }, /* Movie, TMNT */
+      { categoryId: 1, nostalgiaItemId: 1 }, /* Cartoon, TMNT */
+      { categoryId: 2, nostalgiaItemId: 1 }, /* Toy, TMNT */
+      { categoryId: 3, nostalgiaItemId: 1 }, /* Movie, TMNT */
     ])
 
     await queryInterface.bulkInsert('nostalgiaTags', [
-      { tagId: 1, nostalgiaId: 1 }, /* action, TMNT */
-      { tagId: 2, nostalgiaId: 1 }, /* gnarlßy, TMNT */
-      { tagId: 3, nostalgiaId: 1 }, /* extreme, TMNT */
+      { tagId: 1, nostalgiaItemId: 1 }, /* action, TMNT */
+      { tagId: 2, nostalgiaItemId: 1 }, /* gnarlßy, TMNT */
+      { tagId: 3, nostalgiaItemId: 1 }, /* extreme, TMNT */
     ])
 
     await queryInterface.bulkInsert('nostalgiaCharacters', [
@@ -57,8 +57,8 @@ module.exports = {
     ])
 
     return queryInterface.bulkInsert('nostalgiaDecades', [
-      { decadeId: 1, nostalgiaId: 1 }, /* 1990, TMNT */
-      { decadeId: 2, nostalgiaId: 1 }, /* 1980, TMNT */
+      { decadeId: 1, nostalgiaItemId: 1 }, /* 1990, TMNT */
+      { decadeId: 2, nostalgiaItemId: 1 }, /* 1980, TMNT */
     ])
   },
 
