@@ -7,7 +7,6 @@ const categoriesModels = require('./categories')
 const charactersModels = require('./characters')
 const decadesModels = require('./decades')
 const tagsModels = require('./tags')
-/* linking tables */
 const nostalgiaCategoriesModels = require('./nostalgiaCategories')
 const nostalgiaCharactersModels = require('./nostalgiaCharacters')
 const nostalgiaDecadesModels = require('./nostalgiaDecades')
@@ -25,13 +24,11 @@ const categories = categoriesModels(connection, sequelize, nostalgiaItems)
 const characters = charactersModels(connection, sequelize, nostalgiaItems)
 const decades = decadesModels(connection, sequelize, nostalgiaItems)
 const tags = tagsModels(connection, sequelize, nostalgiaItems)
-/* linking tables */
 const nostalgiaCategories = nostalgiaCategoriesModels(connection, sequelize, nostalgiaItems, categories)
 const nostalgiaCharacters = nostalgiaCharactersModels(connection, sequelize, nostalgiaItems, characters)
 const nostalgiaDecades = nostalgiaDecadesModels(connection, sequelize, nostalgiaItems, decades)
 const nostalgiaTags = nostalgiaTagsModels(connection, sequelize, nostalgiaItems, tags)
 
-/* Link the tables */
 nostalgiaItems.belongsToMany(categories, { through: nostalgiaCategories })
 categories.belongsToMany(nostalgiaItems, { through: nostalgiaCategories })
 nostalgiaItems.belongsToMany(characters, { through: nostalgiaCharacters })
