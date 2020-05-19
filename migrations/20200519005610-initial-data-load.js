@@ -46,14 +46,14 @@ module.exports = {
 
     await queryInterface.bulkInsert('nostalgiaTags', [
       { tagId: 1, nostalgiaId: 1 }, /* action, TMNT */
-      { tagId: 2, nostalgiaId: 1 }, /* gnarly, TMNT */
+      { tagId: 2, nostalgiaId: 1 }, /* gnarlßy, TMNT */
       { tagId: 3, nostalgiaId: 1 }, /* extreme, TMNT */
     ])
 
     await queryInterface.bulkInsert('nostalgiaCharacters', [
-      { characterId: 1, nostalgiaId: 1 }, /* Shredder, TMNT */
-      { characterId: 2, nostalgiaId: 1 }, /* Raphael, TMNT */
-      { characterId: 3, nostalgiaId: 1 }, /* Leonardo, TMNT */
+      { characterId: 1, nostalgiaItemId: 1 }, /* Shredder, TMNT */
+      { characterId: 2, nostalgiaItemId: 1 }, /* Raphael, TMNT */
+      { characterId: 3, nostalgiaItemId: 1 }, /* Leonardo, TMNT */
     ])
 
     return queryInterface.bulkInsert('nostalgiaDecades', [

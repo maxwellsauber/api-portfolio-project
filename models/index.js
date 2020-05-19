@@ -32,14 +32,14 @@ const nostalgiaDecades = nostalgiaDecadesModels(connection, sequelize, nostalgia
 const nostalgiaTags = nostalgiaTagsModels(connection, sequelize, nostalgiaItems, tags)
 
 /* Link the tables */
-// nostalgiaItems.belongsToMany(categories, { through: nostalgiaCategories })
-// categories.belongsToMany(nostalgiaItems, { through: nostalgiaCategories })
+nostalgiaItems.belongsToMany(categories, { through: nostalgiaCategories })
+categories.belongsToMany(nostalgiaItems, { through: nostalgiaCategories })
 nostalgiaItems.belongsToMany(characters, { through: nostalgiaCharacters })
 characters.belongsToMany(nostalgiaItems, { through: nostalgiaCharacters })
-// nostalgiaItems.belongsToMany(decades, { through: nostalgiaDecades })
-// decades.belongsToMany(nostalgiaItems, { through: nostalgiaDecades })
-// nostalgiaItems.belongsToMany(tags, { through: nostalgiaTags })
-// tags.belongsToMany(nostalgiaItems, { through: nostalgiaTags })
+nostalgiaItems.belongsToMany(decades, { through: nostalgiaDecades })
+decades.belongsToMany(nostalgiaItems, { through: nostalgiaDecades })
+nostalgiaItems.belongsToMany(tags, { through: nostalgiaTags })
+tags.belongsToMany(nostalgiaItems, { through: nostalgiaTags })
 
 module.exports = {
   nostalgiaItems,

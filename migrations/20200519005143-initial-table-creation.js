@@ -92,7 +92,7 @@ module.exports = {
         primaryKey: true,
         references: { model: 'characters', key: 'id' }
       },
-      nostalgiaId: {
+      nostalgiaItemId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         references: { model: 'nostalgiaItems', key: 'id' }
