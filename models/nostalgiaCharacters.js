@@ -9,4 +9,5 @@ const nostalgiaCharacters = (connection, sequelize, nostalgiaItems, characters) 
   })
 }
 
+
 module.exports = nostalgiaCharacters
