@@ -1,4 +1,4 @@
-const nostalgiaTags = (connection, sequelize, tags, nostalgiaItems) => {
+const nostalgiaTags = (connection, sequelize, nostalgiaItems, tags) => {
   return connection.define('nostalgiaTags', {
     categoryId: { type: sequelize.INTEGER, primaryKey: true, references: { model: tags, key: 'id' } },
     nostalgiaId: { type: sequelize.INTEGER, primaryKey: true, references: { model: nostalgiaItems, key: 'id' } },

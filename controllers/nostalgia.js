@@ -1,9 +1,11 @@
 // TO DO in part Two: Consolidate TEST controllers. Switch from JSON to MySQL for data.
 const nostalgia = require('../nostalgia')
 
+/*
 const getNostalgia = (request, response) => {
   return response.send(nostalgia)
 }
+*/
 
 const getCategory = (request, response) => {
   const { category } = request.params
@@ -35,4 +37,4 @@ const getSlug = (request, response) => {
     : response.status(404).send(`Nothing to see at Slug '${slug}'`)
 }
 
-module.exports = { getNostalgia, getCategory, getSlug, getDecade }
+module.exports = { getCategory, getSlug, getDecade }

@@ -1,9 +1,12 @@
 const express = require('express')
-const { getNostalgia, getCategory, getSlug, getDecade } = require('./controllers/nostalgia')
+const { getCategory, getSlug, getDecade } = require('./controllers/nostalgia')
+const { getAllNostalgiaItems, getNostalgiaItemsByParamWithAllLinkedData } = require('./controllers/nostalgiaItems')
+
 
 const app = express()
 
-app.get('/', getNostalgia)
+app.get('/', getAllNostalgiaItems)
+app.get('/:param', getNostalgiaItemsByParamWithAllLinkedData)
 
 app.set('view engine', 'pug')
 app.use(express.static('public'))

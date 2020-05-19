@@ -1,4 +1,4 @@
-const nostalgiaCharacters = (connection, sequelize, characters, nostalgiaItems) => {
+const nostalgiaCharacters = (connection, sequelize, nostalgiaItems, characters) => {
   return connection.define('nostalgiaCharacters', {
     characterId: { type: sequelize.INTEGER, primaryKey: true, references: { model: characters, key: 'id' } },
     nostalgiaId: { type: sequelize.INTEGER, primaryKey: true, references: { model: nostalgiaItems, key: 'id' } },
