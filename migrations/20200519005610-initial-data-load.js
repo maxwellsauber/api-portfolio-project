@@ -14,6 +14,11 @@ module.exports = {
         description: 'Pizza-eating turtles protect their city under the guidance of a rat',
         slug: 'teenage-mutant-ninja-turtles'
       },
+      {
+        name: 'Nerf Football',
+        description: 'A vibrant squishy football',
+        slug: 'nerf-football'
+      },
     ])
 
     await queryInterface.bulkInsert('categories', [
@@ -25,6 +30,7 @@ module.exports = {
       { tag: 'action' },
       { tag: 'gnarly' },
       { tag: 'extreme' },
+      { tag: 'squishy' },
     ])
 
     await queryInterface.bulkInsert('characters', [
@@ -42,12 +48,16 @@ module.exports = {
       { categoryId: 1, nostalgiaItemId: 1 }, /* Cartoon, TMNT */
       { categoryId: 2, nostalgiaItemId: 1 }, /* Toy, TMNT */
       { categoryId: 3, nostalgiaItemId: 1 }, /* Movie, TMNT */
+      { categoryId: 2, nostalgiaItemId: 2 }, /* Toy, Nerf */
+
     ])
 
     await queryInterface.bulkInsert('nostalgiaTags', [
       { tagId: 1, nostalgiaItemId: 1 }, /* action, TMNT */
       { tagId: 2, nostalgiaItemId: 1 }, /* gnarlßy, TMNT */
       { tagId: 3, nostalgiaItemId: 1 }, /* extreme, TMNT */
+      { tagId: 3, nostalgiaItemId: 2 }, /* extreme, Nerf */
+      { tagId: 4, nostalgiaItemId: 2 }, /* squishy, Nerf */
     ])
 
     await queryInterface.bulkInsert('nostalgiaCharacters', [
@@ -59,6 +69,7 @@ module.exports = {
     return queryInterface.bulkInsert('nostalgiaDecades', [
       { decadeId: 1, nostalgiaItemId: 1 }, /* 1990, TMNT */
       { decadeId: 2, nostalgiaItemId: 1 }, /* 1980, TMNT */
+      { decadeId: 1, nostalgiaItemId: 2 }, /* 1990, Nerf */
     ])
   },
 

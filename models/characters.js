@@ -3,7 +3,7 @@ const characters = (connection, sequelize) => {
     id: { type: sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     character: { type: sequelize.STRING, allowNull: false },
   }, {
-    defaultScope: { attributes: { exclude: ['deletedAt'] } }
+    defaultScope: { attributes: { exclude: ['deletedAt', 'createdAt', 'updatedAt'] } }
   }, {
     paranoid: true
   })

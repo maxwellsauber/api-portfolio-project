@@ -3,7 +3,7 @@ const tags = (connection, sequelize) => {
     id: { type: sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     tag: { type: sequelize.STRING, allowNull: false },
   }, {
-    defaultScope: { attributes: { exclude: ['deletedAt'] } }
+    defaultScope: { attributes: { exclude: ['deletedAt', 'createdAt', 'updatedAt'] } }
   }, {
     paranoid: true
   })

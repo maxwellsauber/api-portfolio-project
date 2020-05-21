@@ -5,7 +5,7 @@ const nostalgiaItems = (connection, sequelize) => {
     description: { type: sequelize.STRING, allowNull: false },
     slug: { type: sequelize.STRING, allowNull: false },
   }, {
-    defaultScope: { attributes: { exclude: ['deletedAt'] } }
+    defaultScope: { attributes: { exclude: ['deletedAt', 'createdAt', 'updatedAt'] } }
   }, {
     paranoid: true
   })

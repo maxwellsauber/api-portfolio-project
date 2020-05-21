@@ -3,7 +3,7 @@ const categories = (connection, sequelize) => {
     id: { type: sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     category: { type: sequelize.STRING, allowNull: false },
   }, {
-    defaultScope: { attributes: { exclude: ['deletedAt'] } }
+    defaultScope: { attributes: { exclude: ['deletedAt', 'createdAt', 'updatedAt'] } }
   }, {
     paranoid: true
   })
