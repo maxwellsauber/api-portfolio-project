@@ -9,7 +9,7 @@ const getNostalgiaItemsByDecade = async (request, response) => {
       }],
       where: {
         decade: { [models.Op.like]: `%${decade.toLowerCase()}%` }
-      },
+      }
     })
 
     return matchingItems.length

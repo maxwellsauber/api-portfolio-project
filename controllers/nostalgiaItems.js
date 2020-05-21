@@ -3,9 +3,9 @@ const models = require('../models')
 
 const getAllNostalgiaItems = async (request, response) => {
   try {
-    const allAuthors = await models.nostalgiaItems.findAll()
+    const allNostalgiaItems = await models.nostalgiaItems.findAll()
 
-    return response.send(allAuthors)
+    return response.send(allNostalgiaItems)
   } catch (error) {
     return response.status(500)
       .send('500 Errors on a half shell')
@@ -23,10 +23,7 @@ const getNostalgiaItemsByIdentifierWithAllLinkedData = async (request, response)
         { model: models.decades }
       ],
       where: {
-        [models.Op.or]: [
-          // { id: { [models.Op.like]: identifier } },
-          { slug: { [models.Op.like]: `%${identifier.toLowerCase()}%` } }
-        ]
+        slug: { [models.Op.like]: `%${identifier.toLowerCase()}%` }
       }
     })
 
