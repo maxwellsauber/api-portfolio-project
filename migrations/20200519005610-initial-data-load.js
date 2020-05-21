@@ -24,6 +24,11 @@ module.exports = {
         description: 'A creepy old man tricks a boy to go back in time so he can kiss his mother',
         slug: 'back-to-the-future'
       },
+      {
+        name: 'Ren and Stimpy',
+        description: 'An angry dog and stupid cat endure bizzare adventures',
+        slug: 'ren-and-stimpy'
+      },
     ])
 
     await queryInterface.bulkInsert('categories', [
@@ -36,7 +41,8 @@ module.exports = {
       { tag: 'gnarly' },
       { tag: 'extreme' },
       { tag: 'squishy' },
-      { tag: 'time travel' }
+      { tag: 'time travel' },
+      { tag: 'bizarre' }
     ])
 
     await queryInterface.bulkInsert('characters', [
@@ -44,7 +50,9 @@ module.exports = {
       { character: 'Raphael' },
       { character: 'Leonardo' },
       { character: 'Marty McFly' },
-      { character: 'Doc Brown' },
+      { character: 'Doc Brown' }, // 5
+      { character: 'Ren Höek' },
+      { character: 'Stimpson J. Cat' },
     ])
 
     await queryInterface.bulkInsert('decades', [
@@ -58,6 +66,7 @@ module.exports = {
       { categoryId: 3, nostalgiaItemId: 1 }, /* Movie, TMNT */
       { categoryId: 2, nostalgiaItemId: 2 }, /* Toy, Nerf */
       { categoryId: 3, nostalgiaItemId: 3 }, /* Movie, BTTF */
+      { categoryId: 1, nostalgiaItemId: 4 }, /* Cartoon, R&S */
 
 
     ])
@@ -70,6 +79,7 @@ module.exports = {
       { tagId: 4, nostalgiaItemId: 2 }, /* squishy, Nerf */
       { tagId: 1, nostalgiaItemId: 3 }, /* action, BTTF */
       { tagId: 5, nostalgiaItemId: 3 }, /* time-travel, BTTF */
+      { tagId: 6, nostalgiaItemId: 4 }, /* bizarre, R&S */
     ])
 
     await queryInterface.bulkInsert('nostalgiaCharacters', [
@@ -78,6 +88,9 @@ module.exports = {
       { characterId: 3, nostalgiaItemId: 1 }, /* Leonardo, TMNT */
       { characterId: 4, nostalgiaItemId: 3 }, /* Marty, bttf */
       { characterId: 5, nostalgiaItemId: 3 }, /* Doc , bttf */
+      { characterId: 6, nostalgiaItemId: 4 }, /* Ren , R&S */
+      { characterId: 7, nostalgiaItemId: 4 }, /* Stimpy , R&S */
+
     ])
 
     return queryInterface.bulkInsert('nostalgiaDecades', [
@@ -85,6 +98,7 @@ module.exports = {
       { decadeId: 2, nostalgiaItemId: 1 }, /* 1980, TMNT */
       { decadeId: 1, nostalgiaItemId: 2 }, /* 1990, Nerf */
       { decadeId: 2, nostalgiaItemId: 3 }, /* 1980, BTTF */
+      { decadeId: 1, nostalgiaItemId: 4 }, /* 1990, R&S */
     ])
   },
 
