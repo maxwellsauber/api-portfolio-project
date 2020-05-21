@@ -19,5 +19,5 @@ app.get('/decade/:decade', getNostalgiaItemsByDecade)
 app.all('*', (request, response) => response.status(404).send('Page Not Found'))
 
 app.listen(1990, () => {
-  console.log('Listening on port 1990...') // eslint-disable-line no-console
+  console.log('Fondly remembering on port 1990...') // eslint-disable-line no-console
 })
