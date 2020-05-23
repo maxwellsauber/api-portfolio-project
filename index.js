@@ -1,5 +1,11 @@
+const bodyParser = require('body-parser')
 const express = require('express')
-const { getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData } = require('./controllers/nostalgiaItems')
+const {
+  getAllNostalgiaItems,
+  getNostalgiaItemsByIdentifierWithAllLinkedData,
+  createNewNostalgiaItem
+} = require('./controllers/nostalgiaItems')
+
 const { getNostalgiaItemsByCategory } = require('./controllers/categories')
 const { getNostalgiaItemsByDecade } = require('./controllers/decades')
 
@@ -11,6 +17,7 @@ app.get('/', (request, response) => response.render('docs/index'))
 
 app.get('/all', getAllNostalgiaItems)
 app.get('/:identifier', getNostalgiaItemsByIdentifierWithAllLinkedData)
+app.post('/', bodyParser.json(), createNewNostalgiaItem)
 
 app.get('/category/:category', getNostalgiaItemsByCategory)
 
