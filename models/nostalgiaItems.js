@@ -3,7 +3,7 @@ const nostalgiaItems = (connection, sequelize) => {
     id: { type: sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     name: { type: sequelize.STRING, allowNull: false },
     description: { type: sequelize.STRING, allowNull: false },
-    slug: { type: sequelize.STRING, allowNull: false },
+    slug: { type: sequelize.STRING, allowNull: false, primaryKey: true },
   }, {
     defaultScope: { attributes: { exclude: ['deletedAt', 'createdAt', 'updatedAt'] } }
   }, {

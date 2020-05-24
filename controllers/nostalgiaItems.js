@@ -1,5 +1,4 @@
 const models = require('../models')
-// const nostalgiaAttributes = ['name', 'description', 'categories', 'decades', 'tags', 'slug']
 
 const getAllNostalgiaItems = async (request, response) => {
   try {
@@ -37,61 +36,109 @@ const getNostalgiaItemsByIdentifierWithAllLinkedData = async (request, response)
 }
 
 const createNewNostalgiaItem = async (request, response) => {
-  // try {
-  const {
-    name,
-    description,
-    slug,
-    // categories, // Different Create?
-    // characters, // Different Create?
-    tags // Different Create?
-    // decades // Different Create?
-  } = request.body
+  try {
+    const {
+      categories,
+      characters,
+      decades,
+      description,
+      name,
+      slug,
+      tags
+    } = request.body
 
-  // if (!name || !description || !slug || !categories || !characters || !tags || !decades)
-  if (!name || !description || !slug) {
-    return response
-      .status(400)
-      .send('400 Need the all attributes')
-    // .send(`400 Need the following attributes: ${nostalgiaAttributes.join(', ')}`)
-  }
+    if (!categories || !characters || !decades || !description || !name || !slug || !tags) {
+      return response
+        .status(400)
+        .send('404 - Required attributes:  "categories","characters","decades","description","name","slug","tags"')
+    }
 
-  const [newNostalgiaItem] = await models.nostalgiaItems.findOrCreate({
-    where: { slug: slug },
-    defaults: { name: name, description: description }
-  })
-
-  const tagIds = tags.map(async tagName => {
-    const [tag] = await models.tags.findOrCreate({ where: { tag: tagName } })
-
-    return tag.id
-  })
-
-  const resolveTagIds = await Promise.all(tagIds)
-
-  const linkedTags = resolveTagIds.map(async tagName => {
-    const [entry] = await models.nostalgiaTags.findOrCreate({
-      where: { tagId: tagName },
-      defaults: { nostalgiaItemId: newNostalgiaItem.id }
+    /* New Item */
+    const [newNostalgiaItem] = await models.nostalgiaItems.findOrCreate({
+      where: { slug: slug, name: name, description: description }
     })
 
-    return entry
-  })
+    /* New Tags */
+    const tagIds = tags.map(async tagName => {
+      const [tag] = await models.tags.findOrCreate({ where: { tag: tagName } })
 
-  await Promise.all(linkedTags)
+      return tag.id
+    })
 
+    const promisedTagIds = await Promise.all(tagIds)
 
-  // characters = "characters": ["Shredder", "Raphael", "Leonardo"],
-  // tags = "tags": [ "action", "gnarly", "extreme"]
-  // categories = "categories": ["cartoon", "movie", "toy"]
+    const linkedTags = promisedTagIds.map(async tagId => {
+      const [entry] = await models.nostalgiaTags.findOrCreate({
+        where: { tagId: tagId, nostalgiaItemId: newNostalgiaItem.id }
+      })
 
+      return entry
+    })
 
-  return response.status(201).send(`added ${newNostalgiaItem.slug}`)
-  //  }
-  // catch (error) {
-  // return response.status(500).send('A 500 error')
-  // }
+    await Promise.all(linkedTags)
+
+    /* New Decades */
+    const decadeIds = decades.map(async decadeName => {
+      const [decade] = await models.decades.findOrCreate({ where: { decade: decadeName } })
+
+      return decade.id
+    })
+
+    const promisedDecadeIds = await Promise.all(decadeIds)
+
+    const linkedDecades = promisedDecadeIds.map(async decade => {
+      const [entry] = await models.nostalgiaDecades.findOrCreate({
+        where: { decadeId: decade, nostalgiaItemId: newNostalgiaItem.id }
+      })
+
+      return entry
+    })
+
+    await Promise.all(linkedDecades)
+
+    /* New Characters*/
+    const characterIds = characters.map(async characterName => {
+      const [character] = await models.characters.findOrCreate({ where: { character: characterName } })
+
+      return character.id
+    })
+
+    const promisedCharacterIds = await Promise.all(characterIds)
+
+    const linkedCharacters = promisedCharacterIds.map(async character => {
+      const [entry] = await models.nostalgiaCharacters.findOrCreate({
+        where: { characterId: character, nostalgiaItemId: newNostalgiaItem.id }
+      })
+
+      return entry
+    })
+
+    await Promise.all(linkedCharacters)
+
+    /* New Categories */
+    const categoriesIds = categories.map(async categoryName => {
+      const [category] = await models.categories.findOrCreate({ where: { category: categoryName } })
+
+      return category.id
+    })
+
+    const promisedCategoryIds = await Promise.all(categoriesIds)
+
+    const linkedCategories = promisedCategoryIds.map(async category => {
+      const [entry] = await models.nostalgiaCategories.findOrCreate({
+        where: { categoryId: category, nostalgiaItemId: newNostalgiaItem.id }
+      })
+
+      return entry
+    })
+
+    await Promise.all(linkedCategories)
+
+    return response.status(201).send(`added ${newNostalgiaItem.slug}`)
+  }
+  catch (error) {
+    return response.status(500).send('A 500 error')
+  }
 }
-
 
 module.exports = { getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem }
