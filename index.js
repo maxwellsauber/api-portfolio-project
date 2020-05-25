@@ -3,7 +3,8 @@ const express = require('express')
 const {
   getAllNostalgiaItems,
   getNostalgiaItemsByIdentifierWithAllLinkedData,
-  createNewNostalgiaItem
+  createNewNostalgiaItem,
+  deleteNostalgiaItem
 } = require('./controllers/nostalgiaItems')
 
 const { getNostalgiaItemsByCategory } = require('./controllers/categories')
@@ -18,6 +19,7 @@ app.get('/', (request, response) => response.render('docs/index'))
 app.get('/all', getAllNostalgiaItems)
 app.get('/:identifier', getNostalgiaItemsByIdentifierWithAllLinkedData)
 app.post('/', bodyParser.json(), createNewNostalgiaItem)
+app.delete('/:slug', bodyParser.json(), deleteNostalgiaItem)
 
 app.get('/category/:category', getNostalgiaItemsByCategory)
 
