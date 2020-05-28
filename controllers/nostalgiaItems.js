@@ -38,13 +38,7 @@ const getNostalgiaItemsByIdentifierWithAllLinkedData = async (request, response)
 const createNewNostalgiaItem = async (request, response) => {
   try {
     const {
-      categories,
-      characters,
-      decades,
-      description,
-      name,
-      slug,
-      tags
+      categories, characters, decades, description, name, slug, tags
     } = request.body
 
     if (!categories || !characters || !decades || !description || !name || !slug || !tags) {
@@ -53,13 +47,11 @@ const createNewNostalgiaItem = async (request, response) => {
         .send('404 - Required attributes:  "categories","characters","decades","description","name","slug","tags"')
     }
 
-    /* New Item */
     const [newNostalgiaItem] = await models.nostalgiaItems.findOrCreate({
       where: { slug },
-      defaults: { description: description, name: name } // descritpion:description could just be description
+      defaults: { description: description, name: name }
     })
 
-    /* New Tags */
     const tagIds = tags.map(async tagName => {
       const [tag] = await models.tags.findOrCreate({ where: { tag: tagName } })
 
@@ -76,7 +68,6 @@ const createNewNostalgiaItem = async (request, response) => {
       return tag
     })
 
-    /* New Decades */
     const decadeIds = decades.map(async decadeName => {
       const [decade] = await models.decades.findOrCreate({ where: { decade: decadeName } })
 
@@ -93,7 +84,6 @@ const createNewNostalgiaItem = async (request, response) => {
       return decadeId
     })
 
-    /* New Characters */
     const characterIds = characters.map(async characterName => {
       const [character] = await models.characters.findOrCreate({ where: { character: characterName } })
 
@@ -110,7 +100,6 @@ const createNewNostalgiaItem = async (request, response) => {
       return characterId
     })
 
-    /* New Categories */
     const categoriesIds = categories.map(async categoryName => {
       const [category] = await models.categories.findOrCreate({ where: { category: categoryName } })
 
@@ -133,23 +122,147 @@ const createNewNostalgiaItem = async (request, response) => {
   }
 }
 
+const updateNostalgiaItem = async (request, response) => {
+  try {
+    const { id } = request.params
+
+    const {
+      categories, characters, decades, description, name, slug, tags
+    } = request.body
+
+    if (!categories || !characters || !decades || !description || !name || !slug || !tags) {
+      return response
+        .status(400)
+        .send('404 - Required attributes:  "categories","characters","decades","description","name","slug","tags"')
+    }
+
+    await models.nostalgiaItems.update({
+      description: description, name: name, slug: slug
+    }, {
+      where: { id: id }
+    })
+
+    models.nostalgiaTags.destroy({ where: { nostalgiaItemId: id } })
+
+    const tagIds = tags.map(async tagName => {
+      const [tag] = await models.tags.findOrCreate({ where: { tag: tagName } })
+
+      return tag.id
+    })
+
+    const promisedTagIds = await Promise.all(tagIds)
+
+    promisedTagIds.map(async tagId => {
+      const [tag] = await models.nostalgiaTags.findOrCreate({
+        where: { tagId: tagId, nostalgiaItemId: id }
+      })
+
+      return tag
+    })
+
+    models.nostalgiaDecades.destroy({ where: { nostalgiaItemId: id } })
+
+    const decadeIds = decades.map(async decadeName => {
+      const [decade] = await models.decades.findOrCreate({ where: { decade: decadeName } })
+
+      return decade.id
+    })
+
+    const promisedDecadeIds = await Promise.all(decadeIds)
+
+    promisedDecadeIds.map(async decadeId => {
+      const [decade] = await models.nostalgiaDecades.findOrCreate({
+        where: { decadeId: decadeId, nostalgiaItemId: id }
+      })
+
+      return decade
+    })
+
+    models.nostalgiaCharacters.destroy({ where: { nostalgiaItemId: id } })
+
+    const characterIds = characters.map(async characterName => {
+      const [character] = await models.characters.findOrCreate({ where: { character: characterName } })
+
+      return character.id
+    })
+
+    const promisedCharacterIds = await Promise.all(characterIds)
+
+    promisedCharacterIds.map(async characterId => {
+      const [character] = await models.nostalgiaCharacters.findOrCreate({
+        where: { characterId: characterId, nostalgiaItemId: id }
+      })
+
+      return character
+    })
+
+
+    models.nostalgiaCategories.destroy({ where: { nostalgiaItemId: id } })
+
+    const categoryIds = categories.map(async categoryName => {
+      const [category] = await models.categories.findOrCreate({ where: { category: categoryName } })
+
+      return category.id
+    })
+
+    const promisedCategoryIds = await Promise.all(categoryIds)
+
+    promisedCategoryIds.map(async categoryId => {
+      const [category] = await models.nostalgiaCharacters.findOrCreate({
+        where: { categoryId: categoryId, nostalgiaItemId: id }
+      })
+
+      return category
+    })
+
+    return response.status(201).send('Thanks for the UPDATE')
+  } catch (error) {
+    return response.status(500).send('500 Error - Unable to update nostalgia item')
+  }
+}
+
 const deleteNostalgiaItem = async (request, response) => {
   try {
     const { slug } = request.params
 
-    const nostalgiaItemtoDelete = await models.nostalgiaItems.findOne({ where: { slug } })
+    const nostalgiaItemToDelete = await models.nostalgiaItems.findOne({ where: { slug } })
 
-    if (!nostalgiaItemtoDelete) return response.status(404).send(`Unknown nostalgia item ${slug}.`)
+    if (!nostalgiaItemToDelete) return response.status(404).send(`Unknown nostalgia item ${slug}.`)
 
-    await models.nostalgiaCategories.destroy({ where: { nostalgiaItemId: nostalgiaItemtoDelete.id } })
-    await models.nostalgiaCharacters.destroy({ where: { nostalgiaItemId: nostalgiaItemtoDelete.id } })
-    await models.nostalgiaDecades.destroy({ where: { nostalgiaItemId: nostalgiaItemtoDelete.id } })
-    await models.nostalgiaTags.destroy({ where: { nostalgiaItemId: nostalgiaItemtoDelete.id } })
-    await models.nostalgiaItems.destroy({ where: { id: nostalgiaItemtoDelete.id } })
+    await models.nostalgiaCategories.destroy({ where: { nostalgiaItemId: nostalgiaItemToDelete.id } })
+    await models.nostalgiaCharacters.destroy({ where: { nostalgiaItemId: nostalgiaItemToDelete.id } })
+    await models.nostalgiaDecades.destroy({ where: { nostalgiaItemId: nostalgiaItemToDelete.id } })
+    await models.nostalgiaTags.destroy({ where: { nostalgiaItemId: nostalgiaItemToDelete.id } })
+    await models.nostalgiaItems.destroy({ where: { id: nostalgiaItemToDelete.id } })
 
-    return response.send(`Successfully deleted the animal with ID: ${slug}`)
+    return response.send(`Successfully deleted the nostalgia item with slug ${slug}`)
   } catch (error) {
     return response.status(500).send('Unknown error while deleting item')
+  }
+}
+
+const patchNostalgiaItem = async (request, response) => {
+  try {
+    const { id } = request.params
+
+    const { description, name, slug } = request.body
+
+    const nostalgiaItemToUpdate = await models.nostalgiaItems.findOne({ where: { id } })
+
+    if (!nostalgiaItemToUpdate) return response.status(404).send('Unknown nostalgia item')
+
+    if (name) { await models.nostalgiaItems.update({ name: name }, { where: { id: id } }) }
+    else if (description) { await models.nostalgiaItems.update({ description: description }, { where: { id: id } }) }
+    else if (slug) { await models.nostalgiaItems.update({ slug: slug }, { where: { id: id } }) }
+    else {
+      return response
+        .status(400)
+        .send('404 - Must provide "name", "description", or "slug"')
+    }
+
+    return response.send('Successfully patched the nostalgia item')
+  } catch (error) {
+    return response.status(500).send('Unknown error while patching item')
   }
 }
 
@@ -157,5 +270,7 @@ module.exports = {
   getAllNostalgiaItems,
   getNostalgiaItemsByIdentifierWithAllLinkedData,
   createNewNostalgiaItem,
-  deleteNostalgiaItem
+  deleteNostalgiaItem,
+  updateNostalgiaItem,
+  patchNostalgiaItem
 }

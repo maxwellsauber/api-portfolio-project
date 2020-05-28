@@ -50,7 +50,7 @@ module.exports = {
       { character: 'Raphael' },
       { character: 'Leonardo' },
       { character: 'Marty McFly' },
-      { character: 'Doc Brown' }, // 5
+      { character: 'Doc Brown' },
       { character: 'Ren Höek' },
       { character: 'Stimpson J. Cat' },
     ])
@@ -61,44 +61,44 @@ module.exports = {
     ])
 
     await queryInterface.bulkInsert('nostalgiaCategories', [
-      { categoryId: 1, nostalgiaItemId: 1 }, /* Cartoon, TMNT */
-      { categoryId: 2, nostalgiaItemId: 1 }, /* Toy, TMNT */
-      { categoryId: 3, nostalgiaItemId: 1 }, /* Movie, TMNT */
-      { categoryId: 2, nostalgiaItemId: 2 }, /* Toy, Nerf */
-      { categoryId: 3, nostalgiaItemId: 3 }, /* Movie, BTTF */
-      { categoryId: 1, nostalgiaItemId: 4 }, /* Cartoon, R&S */
+      { categoryId: 1, nostalgiaItemId: 1 },
+      { categoryId: 2, nostalgiaItemId: 1 },
+      { categoryId: 3, nostalgiaItemId: 1 },
+      { categoryId: 2, nostalgiaItemId: 2 },
+      { categoryId: 3, nostalgiaItemId: 3 },
+      { categoryId: 1, nostalgiaItemId: 4 },
 
 
     ])
 
     await queryInterface.bulkInsert('nostalgiaTags', [
-      { tagId: 1, nostalgiaItemId: 1 }, /* action, TMNT */
-      { tagId: 2, nostalgiaItemId: 1 }, /* gnarly, TMNT */
-      { tagId: 3, nostalgiaItemId: 1 }, /* extreme, TMNT */
-      { tagId: 3, nostalgiaItemId: 2 }, /* extreme, Nerf */
-      { tagId: 4, nostalgiaItemId: 2 }, /* squishy, Nerf */
-      { tagId: 1, nostalgiaItemId: 3 }, /* action, BTTF */
-      { tagId: 5, nostalgiaItemId: 3 }, /* time-travel, BTTF */
-      { tagId: 6, nostalgiaItemId: 4 }, /* bizarre, R&S */
+      { tagId: 1, nostalgiaItemId: 1 },
+      { tagId: 2, nostalgiaItemId: 1 },
+      { tagId: 3, nostalgiaItemId: 1 },
+      { tagId: 3, nostalgiaItemId: 2 },
+      { tagId: 4, nostalgiaItemId: 2 },
+      { tagId: 1, nostalgiaItemId: 3 },
+      { tagId: 5, nostalgiaItemId: 3 },
+      { tagId: 6, nostalgiaItemId: 4 },
     ])
 
     await queryInterface.bulkInsert('nostalgiaCharacters', [
-      { characterId: 1, nostalgiaItemId: 1 }, /* Shredder, TMNT */
-      { characterId: 2, nostalgiaItemId: 1 }, /* Raphael, TMNT */
-      { characterId: 3, nostalgiaItemId: 1 }, /* Leonardo, TMNT */
-      { characterId: 4, nostalgiaItemId: 3 }, /* Marty, bttf */
-      { characterId: 5, nostalgiaItemId: 3 }, /* Doc , bttf */
-      { characterId: 6, nostalgiaItemId: 4 }, /* Ren , R&S */
-      { characterId: 7, nostalgiaItemId: 4 }, /* Stimpy , R&S */
+      { characterId: 1, nostalgiaItemId: 1 },
+      { characterId: 2, nostalgiaItemId: 1 },
+      { characterId: 3, nostalgiaItemId: 1 },
+      { characterId: 4, nostalgiaItemId: 3 },
+      { characterId: 5, nostalgiaItemId: 3 },
+      { characterId: 6, nostalgiaItemId: 4 },
+      { characterId: 7, nostalgiaItemId: 4 },
 
     ])
 
     return queryInterface.bulkInsert('nostalgiaDecades', [
-      { decadeId: 1, nostalgiaItemId: 1 }, /* 1990, TMNT */
-      { decadeId: 2, nostalgiaItemId: 1 }, /* 1980, TMNT */
-      { decadeId: 1, nostalgiaItemId: 2 }, /* 1990, Nerf */
-      { decadeId: 2, nostalgiaItemId: 3 }, /* 1980, BTTF */
-      { decadeId: 1, nostalgiaItemId: 4 }, /* 1990, R&S */
+      { decadeId: 1, nostalgiaItemId: 1 },
+      { decadeId: 2, nostalgiaItemId: 1 },
+      { decadeId: 1, nostalgiaItemId: 2 },
+      { decadeId: 2, nostalgiaItemId: 3 },
+      { decadeId: 1, nostalgiaItemId: 4 },
     ])
   },
 

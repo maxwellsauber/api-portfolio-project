@@ -6,16 +6,17 @@ const models = require('../../models')
 const {
   after, afterEach, before, beforeEach, describe, it
 } = require('mocha')
-const { nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody } = require('../mocks/nostalgiaItems')
-const { getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem } = require('../../controllers/nostalgiaItems.js')
-// const { getNostalgiaItemsByDecade } = require('../../controllers/decades.js')
-// const { getNostalgiaItemsByCategory } = require('../../controllers/categories.js')
-// REMAINING CONROLERS TO WRITE - PUT PATCH DELETE
+const {
+  nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody, matchingDecade, matchingCategory, deleteItem
+} = require('../mocks/nostalgiaItems')
+const { getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem, deleteNostalgiaItem } = require('../../controllers/nostalgiaItems.js')
+const { getNostalgiaItemsByDecade } = require('../../controllers/decades.js')
+const { getNostalgiaItemsByCategory } = require('../../controllers/categories.js')
 
 chai.use(sinonChai)
 const { expect } = chai
 
-describe('Controllers - nostalgiaItems', () => {
+describe('Controllers', () => {
   let response
   let sandbox
 
@@ -37,11 +38,19 @@ describe('Controllers - nostalgiaItems', () => {
   let stubbedStatus
   let stubbedStatusDotSend
 
+  let stubbedFindAllDecades
+  let stubbedFindAlCategories
+
+  let stubbedNostalgiaItemsDestroy
+  let stubbedNostalgiaTagsDestroy
+  let stubbedNostalgiaCategoriesDestroy
+  let stubbedNostalgiaCharactersDestroy
+  let stubbedNostalgiaDecadesDestroy
+
   before(() => {
     sandbox = sinon.createSandbox()
 
     stubbedNostalgiaItemsFindOrCreate = sandbox.stub(models.nostalgiaItems, 'findOrCreate')
-
     stubbedTagsFindOrCreate = sandbox.stub(models.tags, 'findOrCreate')
     stubbedCategoriesFindOrCreate = sandbox.stub(models.categories, 'findOrCreate')
     stubbedCharactersFindOrCreate = sandbox.stub(models.characters, 'findOrCreate')
@@ -54,10 +63,18 @@ describe('Controllers - nostalgiaItems', () => {
 
     stubbedFindAll = sandbox.stub(models.nostalgiaItems, 'findAll')
     stubbedFindOne = sandbox.stub(models.nostalgiaItems, 'findOne')
-
     stubbedSend = sandbox.stub()
     stubbedStatus = sandbox.stub()
     stubbedStatusDotSend = sandbox.stub()
+
+    stubbedFindAllDecades = sandbox.stub(models.decades, 'findAll')
+    stubbedFindAlCategories = sandbox.stub(models.categories, 'findAll')
+
+    stubbedNostalgiaItemsDestroy = sandbox.stub(models.nostalgiaItems, 'destroy')
+    stubbedNostalgiaTagsDestroy = sandbox.stub(models.nostalgiaTags, 'destroy')
+    stubbedNostalgiaCategoriesDestroy = sandbox.stub(models.nostalgiaCategories, 'destroy')
+    stubbedNostalgiaCharactersDestroy = sandbox.stub(models.nostalgiaCharacters, 'destroy')
+    stubbedNostalgiaDecadesDestroy = sandbox.stub(models.nostalgiaDecades, 'destroy')
 
     response = {
       send: stubbedSend,
@@ -126,6 +143,7 @@ describe('Controllers - nostalgiaItems', () => {
       stubbedFindAll.returns([])
 
       await getNostalgiaItemsByIdentifierWithAllLinkedData(request, response)
+
       expect(stubbedStatus).to.have.been.calledWith(404)
       expect(stubbedStatusDotSend).to.have.been.calledWith(`"${request.params.identifier}" - Not Found`)
     })
@@ -218,7 +236,125 @@ describe('Controllers - nostalgiaItems', () => {
       expect(stubbedStatusDotSend).to.have.been.calledWith('500 Error - Unable to create nostalgia item')
     })
   })
-  // describe('getNostalgiaItemsByDecade', () => {})
-  // describe('getNostalgiaItemsByCategory', () => {})
-  // describe('deleteNostalgiaItem', () => {})
+  describe('getNostalgiaItemsByDecade', () => {
+    it('retrieves the nostalgia item associated with the provided decade and linked data from the database and calls response.send() with it', async () => {
+      const request = { params: { decade: '1990' } }
+
+      stubbedFindAllDecades.returns(matchingDecade)
+
+      await getNostalgiaItemsByDecade(request, response)
+
+      expect(stubbedFindAllDecades).to.have.been.calledWith({
+        include: [
+          { model: models.nostalgiaItems }
+        ],
+        where: {
+          decade: { [models.Op.like]: `%${request.params.decade.toLowerCase()}%` }
+        }
+      })
+
+      expect(stubbedSend).to.have.been.calledWith(matchingDecade)
+    })
+
+    it('returns a 404 status when no nostalgia item is found by decade', async () => {
+      const request = { params: { decade: 'not-found' } }
+
+      stubbedFindAllDecades.returns([])
+
+      await getNostalgiaItemsByDecade(request, response)
+      expect(stubbedStatus).to.have.been.calledWith(404)
+      expect(stubbedStatusDotSend).to.have.been.calledWith(`"${request.params.decade}" - Not Found`)
+    })
+
+    it('returns a 500 status when an error occurs retrieving a nostalgia item by decade', async () => {
+      stubbedFindOne.throws('ERROR!')
+
+      await getNostalgiaItemsByDecade({}, response)
+
+      expect(stubbedStatus).to.have.been.calledWith(500)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('500')
+    })
+  })
+  describe('getNostalgiaItemsByCategory', () => {
+    it('retrieves the nostalgia item associated with the provided category and liked data from the database and calls response.send() with it', async () => {
+      const request = { params: { category: 'toy' } }
+
+      stubbedFindAlCategories.returns(matchingCategory)
+
+      await getNostalgiaItemsByCategory(request, response)
+
+      expect(stubbedFindAlCategories).to.have.been.calledWith({
+        include: [
+          { model: models.nostalgiaItems }
+        ],
+        where: {
+          category: { [models.Op.like]: `%${request.params.category.toLowerCase()}%` }
+        }
+      })
+
+      expect(stubbedSend).to.have.been.calledWith(matchingCategory)
+    })
+
+    it('returns a 404 status when no nostalgia item is found by category', async () => {
+      const request = { params: { category: 'not-found' } }
+
+      stubbedFindAlCategories.returns([])
+
+      await getNostalgiaItemsByCategory(request, response)
+      expect(stubbedStatus).to.have.been.calledWith(404)
+      expect(stubbedStatusDotSend).to.have.been.calledWith(`"${request.params.category}" - Not Found`)
+    })
+
+    it('returns a 500 status when an error occurs retrieving a nostalgia item by category', async () => {
+      stubbedFindOne.throws('ERROR!')
+
+      await getNostalgiaItemsByCategory({}, response)
+
+      expect(stubbedStatus).to.have.been.calledWith(500)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('500')
+    })
+  })
+  describe('deleteNostalgiaItem', () => {
+    it('responds with a success message when a nostalgia item is deleted', async () => {
+      const request = { params: { slug: 'back-to-the-future' } }
+
+      stubbedFindOne.returns(deleteItem)
+
+      await deleteNostalgiaItem(request, response)
+
+
+      expect(stubbedFindOne).to.have.been.calledWith({ where: { slug: request.params.slug } })
+
+      expect(stubbedNostalgiaCategoriesDestroy).to.have.been.calledWith({ where: { nostalgiaItemId: 3 } })
+      expect(stubbedNostalgiaCharactersDestroy).to.have.been.calledWith({ where: { nostalgiaItemId: 3 } })
+      expect(stubbedNostalgiaDecadesDestroy).to.have.been.calledWith({ where: { nostalgiaItemId: 3 } })
+      expect(stubbedNostalgiaTagsDestroy).to.have.been.calledWith({ where: { nostalgiaItemId: 3 } })
+      expect(stubbedNostalgiaItemsDestroy).to.have.been.calledWith({ where: { id: 3 } })
+
+      expect(response.send).to.have.been.calledWith(`Successfully deleted the nostalgia item with slug ${request.params.slug}`)
+    })
+    it('responds with a 404 when no nostalgia can be found with the slug passed in', async () => {
+      stubbedFindOne.returns(null)
+
+      const request = { params: { slug: 'not-found-item' } }
+
+      await deleteNostalgiaItem(request, response)
+
+      expect(stubbedFindOne).to.have.been.calledWith({ where: { slug: 'not-found-item' } })
+
+      expect(response.status).to.have.been.calledWith(404)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Unknown nostalgia item not-found-item.')
+    })
+    it('returns a 500 error when the database calls fails', async () => {
+      stubbedFindOne.throws('ERROR!')
+
+      const request = { params: { slug: 'not-found-item' } }
+
+      await deleteNostalgiaItem(request, response)
+
+      expect(stubbedFindOne).to.have.been.calledWith({ where: { slug: 'not-found-item' } })
+      expect(response.status).to.have.been.calledWith(500)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Unknown error while deleting item')
+    })
+  })
 })

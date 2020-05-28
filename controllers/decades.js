@@ -8,7 +8,7 @@ const getNostalgiaItemsByDecade = async (request, response) => {
         model: models.nostalgiaItems
       }],
       where: {
-        decade: { [models.Op.like]: `%${decade.toLowerCase()}%` }
+        decade: { [models.Op.like]: `%${decade}%` }
       }
     })
 

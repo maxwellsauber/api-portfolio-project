@@ -1,5 +1,5 @@
 section#put-root
-  h2 Route: / {slug}
+  h2 Route: /{id}
   p Example URL - <a href='#'>http://localhost:1990/</a>
   
   h3 Method
@@ -11,11 +11,12 @@ section#put-root
   pre.code.
     {
       "name": "My Updated Toy",
-      "category": "toys",
-      "decade": "1990",
-      "description": "Updated toy description",
-      "tags": [ "updated-tag1", "updated-tag2", "updated-tag3"],              
-      "slug": "EXISTING-SLUG"
+      "description": "I remember updating things",
+      "slug": "my-new-toy-slug",
+      "tags": ["updated-tag1", "updated-tag2"],
+      "decades" : ["1960", "1970"],
+      "characters" : ["updated-character1", "updated-character2"],
+      "categories" : ["updated-category1", "updated-character2"]
     }
 
   h3 Description
