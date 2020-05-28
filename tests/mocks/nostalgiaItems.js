@@ -189,6 +189,11 @@ const nostalgiaPostBody =
   categories: ['movie']
 }
 
+const nostalgiaPatchBody =
+{
+  name: 'Star Wars'
+}
+
 const matchingDecade = [
   {
     id: 1,
@@ -244,6 +249,12 @@ const matchingCategory = [
 ]
 
 module.exports = {
-  nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody, matchingDecade, matchingCategory, deleteItem
+  nostalgiaList,
+  matchingNostalgiaItem,
+  nostalgiaPostBody,
+  nostalgiaPatchBody,
+  matchingDecade,
+  matchingCategory,
+  deleteItem
 }
 

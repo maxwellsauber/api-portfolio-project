@@ -196,7 +196,6 @@ const updateNostalgiaItem = async (request, response) => {
       return character
     })
 
-
     models.nostalgiaCategories.destroy({ where: { nostalgiaItemId: id } })
 
     const categoryIds = categories.map(async categoryName => {
@@ -260,7 +259,7 @@ const patchNostalgiaItem = async (request, response) => {
         .send('404 - Must provide "name", "description", or "slug"')
     }
 
-    return response.send('Successfully patched the nostalgia item')
+    return response.status(201).send('Successfully patched the nostalgia item')
   } catch (error) {
     return response.status(500).send('Unknown error while patching item')
   }

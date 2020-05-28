@@ -7,10 +7,10 @@ const {
   after, afterEach, before, beforeEach, describe, it
 } = require('mocha')
 const {
-  nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody, matchingDecade, matchingCategory, deleteItem
+  nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody, nostalgiaPatchBody, matchingDecade, matchingCategory, deleteItem
 } = require('../mocks/nostalgiaItems')
 const {
-  getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem, updateNostalgiaItem, deleteNostalgiaItem
+  getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem, updateNostalgiaItem, deleteNostalgiaItem, patchNostalgiaItem
 } = require('../../controllers/nostalgiaItems.js')
 const { getNostalgiaItemsByDecade } = require('../../controllers/decades.js')
 const { getNostalgiaItemsByCategory } = require('../../controllers/categories.js')
@@ -227,7 +227,7 @@ describe('Controllers', () => {
       expect(stubbedStatusDotSend).to.have.been.calledWith('404 - Required attributes:  "categories","characters","decades","description","name","slug","tags"')
     })
 
-    it('returns a 500 status when an error occurs saving a new villain', async () => {
+    it('returns a 500 status when an error occurs saving a new nostalgia item', async () => {
       const request = { body: nostalgiaPostBody }
 
       stubbedNostalgiaItemsFindOrCreate.throws('ERROR!')
@@ -236,6 +236,38 @@ describe('Controllers', () => {
 
       expect(stubbedStatus).to.have.been.calledWith(500)
       expect(stubbedStatusDotSend).to.have.been.calledWith('500 Error - Unable to create nostalgia item')
+    })
+  })
+  describe('patchNostalgiaItem', () => {
+    it('updates an individual attribute of a existing nostalgia item details and saves them as a new item in the database, returning the saved record with a 201 status', async () => {
+      const request = { body: nostalgiaPatchBody, params: { id: '3' } }
+
+      stubbedFindOne.returns(matchingNostalgiaItem)
+
+      await patchNostalgiaItem(request, response)
+
+      expect(stubbedStatus).to.have.been.calledWith(201)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Successfully patched the nostalgia item')
+    })
+    it('returns a 400 status when not all required fields are provided (Example: missing required "category")', async () => {
+      const request = { body: [], params: { id: '9' } }
+
+      stubbedFindOne.returns(matchingNostalgiaItem)
+
+      await patchNostalgiaItem(request, response)
+
+      expect(stubbedNostalgiaItemsFindOrCreate).to.have.callCount(0)
+      expect(stubbedStatus).to.have.been.calledWith(400)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('404 - Must provide "name", "description", or "slug"')
+    })
+
+    it('returns a 500 status when an error occurs saving a new nostalgia item', async () => {
+      stubbedNostalgiaItemsFindOrCreate.throws('ERROR!')
+
+      await patchNostalgiaItem({}, response)
+
+      expect(stubbedStatus).to.have.been.calledWith(500)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Unknown error while patching item')
     })
   })
   describe('updateNostalgiaItem', () => {
@@ -305,7 +337,7 @@ describe('Controllers', () => {
       expect(stubbedStatusDotSend).to.have.been.calledWith('404 - Required attributes:  "categories","characters","decades","description","name","slug","tags"')
     })
 
-    it('returns a 500 status when an error occurs saving a new villain', async () => {
+    it('returns a 500 status when an error occurs saving a new nostalgia item', async () => {
       const request = { body: nostalgiaPostBody, params: { id: '1' } }
 
       stubbedNostalgiaItemsFindOrCreate.throws('ERROR!')
