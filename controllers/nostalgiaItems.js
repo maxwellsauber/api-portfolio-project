@@ -208,7 +208,7 @@ const updateNostalgiaItem = async (request, response) => {
     const promisedCategoryIds = await Promise.all(categoryIds)
 
     promisedCategoryIds.map(async categoryId => {
-      const [category] = await models.nostalgiaCharacters.findOrCreate({
+      const [category] = await models.nostalgiaCategories.findOrCreate({
         where: { categoryId: categoryId, nostalgiaItemId: id }
       })
 

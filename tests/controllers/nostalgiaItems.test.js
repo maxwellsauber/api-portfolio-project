@@ -9,7 +9,9 @@ const {
 const {
   nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody, matchingDecade, matchingCategory, deleteItem
 } = require('../mocks/nostalgiaItems')
-const { getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem, deleteNostalgiaItem } = require('../../controllers/nostalgiaItems.js')
+const {
+  getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem, updateNostalgiaItem, deleteNostalgiaItem
+} = require('../../controllers/nostalgiaItems.js')
 const { getNostalgiaItemsByDecade } = require('../../controllers/decades.js')
 const { getNostalgiaItemsByCategory } = require('../../controllers/categories.js')
 
@@ -236,6 +238,93 @@ describe('Controllers', () => {
       expect(stubbedStatusDotSend).to.have.been.calledWith('500 Error - Unable to create nostalgia item')
     })
   })
+  describe('updateNostalgiaItem', () => {
+    it('updates an existing nostalgia item details and saves them as a new item in the database, returning the saved record with a 201 status', async () => {
+      const request = { body: nostalgiaPostBody, params: { id: '1' } }
+
+      stubbedNostalgiaItemsFindOrCreate.returns([{
+        id: 66,
+        name: 'Star Wars',
+        description: 'Wars in Space',
+        slug: 'star-wars',
+      }, true])
+      stubbedTagsFindOrCreate.returns([{
+        id: 66,
+        tag: ['science-fiction']
+      }, true])
+      stubbeDecadesFindOrCreate.returns([{
+        id: 66,
+        tag: '1970'
+      }], true)
+      stubbedCharactersFindOrCreate.onFirstCall().returns([{
+        id: 66,
+        characters: 'Luke Skywalker'
+      }, true])
+      stubbedCharactersFindOrCreate.onSecondCall().returns([{
+        id: 3000,
+        characters: 'Darth Vader'
+      }, true])
+      stubbedCategoriesFindOrCreate.returns([{
+        id: 66,
+        category: 'movie'
+      }, true])
+      stubbedNostalgiaTagsFindOrCreate.returns([{
+        tagId: 66,
+        nostalgiaItemId: 66
+      }, true])
+      stubbedNostalgiaCategoiesFindOrCreate.returns([{
+        categoryId: 66,
+        nostalgiaItemId: 66
+      }, true])
+      stubbedNostalgiaCharactersFindOrCreate.onFirstCall().returns([{
+        characterId: 66,
+        nostalgiaItemId: 66
+      }, true])
+      stubbedNostalgiaCharactersFindOrCreate.onSecondCall().returns([{
+        characterId: 66,
+        nostalgiaItemId: 3000
+      }, true])
+      stubbedNostalgiaDecadesFindOrCreate.returns([{
+        decadeId: 66,
+        nostalgiaItemId: 66
+      }, true])
+
+      await updateNostalgiaItem(request, response)
+
+      expect(stubbedStatus).to.have.been.calledWith(201)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Thanks for the UPDATE')
+    })
+    it('returns a 400 status when not all required fields are provided (Example: missing required "category")', async () => {
+      const { name, decade } = nostalgiaPostBody
+      const request = { body: { name, decade } }
+
+      await updateNostalgiaItem(request, response)
+
+      expect(stubbedNostalgiaItemsFindOrCreate).to.have.callCount(0)
+      expect(stubbedStatus).to.have.been.calledWith(400)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('404 - Required attributes:  "categories","characters","decades","description","name","slug","tags"')
+    })
+
+    it.only('returns a 500 status when an error occurs saving a new villain', async () => {
+      const request = { body: nostalgiaPostBody, params: { id: '1' } }
+
+      stubbedNostalgiaItemsFindOrCreate.throws('ERROR!')
+
+      await updateNostalgiaItem(request, response)
+
+      expect(stubbedStatus).to.have.been.calledWith(500)
+      expect(stubbedStatusDotSend).to.have.been.calledWith('500 Error - Unable to update nostalgia item')
+    })
+  })
+
+
+
+
+
+
+
+
+
   describe('getNostalgiaItemsByDecade', () => {
     it('retrieves the nostalgia item associated with the provided decade and linked data from the database and calls response.send() with it', async () => {
       const request = { params: { decade: '1990' } }
