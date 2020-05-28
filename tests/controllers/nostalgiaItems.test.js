@@ -296,7 +296,7 @@ describe('Controllers', () => {
     })
     it('returns a 400 status when not all required fields are provided (Example: missing required "category")', async () => {
       const { name, decade } = nostalgiaPostBody
-      const request = { body: { name, decade } }
+      const request = { body: { name, decade }, params: { id: '1' } }
 
       await updateNostalgiaItem(request, response)
 
@@ -305,7 +305,7 @@ describe('Controllers', () => {
       expect(stubbedStatusDotSend).to.have.been.calledWith('404 - Required attributes:  "categories","characters","decades","description","name","slug","tags"')
     })
 
-    it.only('returns a 500 status when an error occurs saving a new villain', async () => {
+    it('returns a 500 status when an error occurs saving a new villain', async () => {
       const request = { body: nostalgiaPostBody, params: { id: '1' } }
 
       stubbedNostalgiaItemsFindOrCreate.throws('ERROR!')
@@ -316,15 +316,6 @@ describe('Controllers', () => {
       expect(stubbedStatusDotSend).to.have.been.calledWith('500 Error - Unable to update nostalgia item')
     })
   })
-
-
-
-
-
-
-
-
-
   describe('getNostalgiaItemsByDecade', () => {
     it('retrieves the nostalgia item associated with the provided decade and linked data from the database and calls response.send() with it', async () => {
       const request = { params: { decade: '1990' } }
