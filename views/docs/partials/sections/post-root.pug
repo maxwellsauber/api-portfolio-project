@@ -1,0 +1,23 @@
+section#post-root
+  h2 Route: / 
+  p Example URL - <a href='http://localhost:1990/'>http://localhost:1990/</a>
+  
+  h3 Method
+  p POST
+  
+  h3 Headers
+  pre.code Content-Type application/json
+  h3 Body
+  pre.code.
+    {
+      "name": "My New Toy",
+      "description": "It was the best thing ever",
+      "slug": "my-new-toy",
+      "tags": ["tag1", "tag2", "tag3"],
+      "decades" : ["1990", "1980"],
+      "characters" : ["character1", "character2"],
+      "categories" : ["category1", "category2"]
+    }
+
+  h3 Description
+  p Creates a new nostalgia item from the data provided in the body. 

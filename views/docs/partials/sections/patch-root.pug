@@ -1,0 +1,18 @@
+section#patch-root
+  h2 Route: /{id}
+  p Example URL - <a href='#'>http://localhost:1990/1</a>
+          
+  h3 Method
+  p PATCH
+
+  h3 Headers
+  pre.code Content-Type application/json
+  h3 Body
+  pre.code.
+    {
+      "name": "My New Name"
+    }
+
+  h3 Description
+  p Update an individual attribute for an existing {id} with data provided in the body.
+  p.small (Only accepts "description", "name" or "slug", linked data must be updated with PUT)
