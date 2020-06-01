@@ -7,6 +7,7 @@
     "dev": "./node_modules/.bin/concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "./node_modules/.bin/webpack --progress --inline --config webpack.dev.js",
     "dev:server": "./node_modules/.bin/env-cmd ./node_modules/.bin/babel-watch server.js",
+    "dev:migrate": "./node_modules/.bin/env-cmd ./node_modules/.bin/sequelize db:migrate --env development --config ./config/sequelize.js",
     "lint": "./node_modules/.bin/eslint --format codeframe --ext jsx .",
     "lint:pug": "./node_modules/.bin/pug-lint . ",
     "test": "./node_modules/.bin/env-cmd  ./node_modules/.bin/mocha tests/**/*.test.js"
