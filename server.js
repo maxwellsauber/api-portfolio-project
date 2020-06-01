@@ -1,5 +1,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
+const path = require('path')
+
 const {
   deleteNostalgiaItem,
   getAllNostalgiaItems,
@@ -16,20 +18,25 @@ const app = express()
 
 app.set('view engine', 'pug')
 app.use(express.static('public'))
-app.get('/', (request, response) => response.render('docs/index'))
+app.get('/api', (request, response) => response.render('docs/index'))
 
-app.get('/category/:category', getNostalgiaItemsByCategory)
-app.get('/decade/:decade', getNostalgiaItemsByDecade)
+app.get('/api/category/:category', getNostalgiaItemsByCategory)
+app.get('/api/decade/:decade', getNostalgiaItemsByDecade)
 
-app.get('/all', getAllNostalgiaItems)
-app.get('/:identifier', getNostalgiaItemsByIdentifierWithAllLinkedData)
+app.get('/api/all', getAllNostalgiaItems)
+app.get('/api/:identifier', getNostalgiaItemsByIdentifierWithAllLinkedData)
 
-app.delete('/:slug', bodyParser.json(), deleteNostalgiaItem)
-app.patch('/:id', bodyParser.json(), patchNostalgiaItem)
-app.post('/', bodyParser.json(), createNewNostalgiaItem)
-app.put('/:id', bodyParser.json(), updateNostalgiaItem)
+app.delete('/api/:slug', bodyParser.json(), deleteNostalgiaItem)
+app.patch('/api/:id', bodyParser.json(), patchNostalgiaItem)
+app.post('/api/', bodyParser.json(), createNewNostalgiaItem)
+app.put('/api/:id', bodyParser.json(), updateNostalgiaItem)
+
+
+app.get('/all', (request, response) => response.sendFile(path.resolve(__dirname, 'public', 'index.html')))
+
 
 app.all('*', (request, response) => response.status(404).send('Page Not Found'))
+
 
 app.listen(1990, () => {
   console.log('Fondly remembering on port 1990...') // eslint-disable-line no-console
