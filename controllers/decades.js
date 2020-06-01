@@ -5,11 +5,11 @@ const getNostalgiaItemsByDecade = async (request, response) => {
     const { decade } = request.params
     const matchingItems = await models.decades.findAll({
       include: [{
-        model: models.nostalgiaItems
+        model: models.nostalgiaItems,
       }],
       where: {
-        decade: { [models.Op.like]: `%${decade}%` }
-      }
+        decade: { [models.Op.like]: `%${decade}%` },
+      },
     })
 
     return matchingItems.length

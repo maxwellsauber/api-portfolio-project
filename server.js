@@ -31,11 +31,10 @@ app.patch('/api/:id', bodyParser.json(), patchNostalgiaItem)
 app.post('/api/', bodyParser.json(), createNewNostalgiaItem)
 app.put('/api/:id', bodyParser.json(), updateNostalgiaItem)
 
-
 app.get('/all', (request, response) => response.sendFile(path.resolve(__dirname, 'public', 'index.html')))
 
-
-app.all('*', (request, response) => response.status(404).send('Page Not Found'))
+// app.all('*', (request, response) => response.status(404).send('Page Not Found'))
+app.all('*', (request, response) => response.sendFile(path.resolve(__dirname, 'public', 'index.html')))
 
 
 app.listen(1990, () => {

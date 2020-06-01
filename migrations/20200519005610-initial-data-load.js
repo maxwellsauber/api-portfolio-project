@@ -32,20 +32,35 @@ module.exports = {
         description: 'Robots in disguise',
         slug: 'transformers',
       },
+      {
+        name: 'It\'s a Wonderful Life',
+        description: 'Man attempts suicide to escape his family, but finds the after-life to be worse',
+        slug: 'its-a-wonderful-life',
+      }, // 6
+      {
+        name: 'LEGO',
+        description: 'Interlocking brick toy that now rules the world',
+        slug: 'lego',
+      }, // 7
     ])
 
     await queryInterface.bulkInsert('categories', [
       { category: 'cartoon' },
       { category: 'toy' },
       { category: 'movie' },
+      { category: 'video-game' },
     ])
     await queryInterface.bulkInsert('tags', [
       { tag: 'action' },
       { tag: 'gnarly' },
       { tag: 'extreme' },
       { tag: 'squishy' },
-      { tag: 'time travel' },
+      { tag: 'time travel' }, // 5
       { tag: 'bizarre' },
+      { tag: 'heartfelt' }, // 7
+      { tag: 'horror' }, // 8
+      { tag: 'learning' }, // 9
+      { tag: 'awesome' }, // 10
     ])
 
     await queryInterface.bulkInsert('characters', [
@@ -53,11 +68,11 @@ module.exports = {
       { character: 'Raphael' },
       { character: 'Leonardo' },
       { character: 'Marty McFly' },
-      { character: 'Doc Brown' },
+      { character: 'Doc Brown' }, // 5
       { character: 'Ren Höek' },
       { character: 'Stimpson J. Cat' },
       { character: 'Optimus Prime' },
-
+      { character: 'George Baily' }, // 9
     ])
 
     await queryInterface.bulkInsert('decades', [
@@ -65,6 +80,11 @@ module.exports = {
       { decade: '1980' },
       { decade: '2000' },
       { decade: '2010' },
+      { decade: '1940' }, // 5
+      { decade: '1950' }, // 6
+      { decade: '1960' }, // 7
+      { decade: '1970' }, // 8
+      { decade: '2020' }, // 9
     ])
 
     await queryInterface.bulkInsert('nostalgiaCategories', [
@@ -77,8 +97,11 @@ module.exports = {
       { categoryId: 1, nostalgiaItemId: 5 },
       { categoryId: 2, nostalgiaItemId: 5 },
       { categoryId: 3, nostalgiaItemId: 5 },
-
-
+      { categoryId: 3, nostalgiaItemId: 6 }, // 6
+      { categoryId: 1, nostalgiaItemId: 7 },
+      { categoryId: 2, nostalgiaItemId: 7 },
+      { categoryId: 3, nostalgiaItemId: 7 },
+      { categoryId: 4, nostalgiaItemId: 7 },
     ])
 
     await queryInterface.bulkInsert('nostalgiaTags', [
@@ -93,6 +116,10 @@ module.exports = {
       { tagId: 1, nostalgiaItemId: 5 },
       { tagId: 3, nostalgiaItemId: 5 },
       { tagId: 6, nostalgiaItemId: 5 },
+      { tagId: 7, nostalgiaItemId: 6 },
+      { tagId: 8, nostalgiaItemId: 6 }, // 6
+      { tagId: 9, nostalgiaItemId: 7 },
+      { tagId: 10, nostalgiaItemId: 7 },
     ])
 
     await queryInterface.bulkInsert('nostalgiaCharacters', [
@@ -104,8 +131,7 @@ module.exports = {
       { characterId: 6, nostalgiaItemId: 4 },
       { characterId: 7, nostalgiaItemId: 4 },
       { characterId: 8, nostalgiaItemId: 5 },
-
-
+      { characterId: 9, nostalgiaItemId: 6 },
     ])
 
     return queryInterface.bulkInsert('nostalgiaDecades', [
@@ -118,6 +144,14 @@ module.exports = {
       { decadeId: 2, nostalgiaItemId: 5 },
       { decadeId: 3, nostalgiaItemId: 5 },
       { decadeId: 4, nostalgiaItemId: 5 },
+      { decadeId: 5, nostalgiaItemId: 6 }, // 6
+      { decadeId: 1, nostalgiaItemId: 7 },
+      { decadeId: 2, nostalgiaItemId: 7 },
+      { decadeId: 3, nostalgiaItemId: 7 },
+      { decadeId: 4, nostalgiaItemId: 7 },
+      { decadeId: 6, nostalgiaItemId: 7 },
+      { decadeId: 7, nostalgiaItemId: 7 },
+      { decadeId: 8, nostalgiaItemId: 7 },
     ])
   },
 

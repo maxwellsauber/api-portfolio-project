@@ -15,8 +15,8 @@ const nostalgiaTagsModels = require('./nostalgiaTags')
 const environment = process.env.NODE_ENV || 'development'
 const config = allConfigs[environment]
 
-const connection = new sequelize(config.database, config.username, config.password, {
-  host: config.host, dialect: config.dialect
+const connection = new sequelize(config.database, config.username, config.password, { /* Disable require capital "S" on sequelize */ // eslint-disable-line new-cap
+  host: config.host, dialect: config.dialect,
 })
 
 const nostalgiaItems = nostalgiaItemsModels(connection, sequelize)
@@ -48,5 +48,5 @@ module.exports = {
   nostalgiaCharacters,
   nostalgiaDecades,
   nostalgiaTags,
-  Op: sequelize.Op
+  Op: sequelize.Op,
 }

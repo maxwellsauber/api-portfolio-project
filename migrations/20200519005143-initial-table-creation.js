@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /*
@@ -17,7 +15,7 @@ module.exports = {
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -28,7 +26,7 @@ module.exports = {
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -39,7 +37,7 @@ module.exports = {
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -50,7 +48,7 @@ module.exports = {
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -61,7 +59,7 @@ module.exports = {
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -71,17 +69,17 @@ module.exports = {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
-        references: { model: 'categories', key: 'id' }
+        references: { model: 'categories', key: 'id' },
       },
       nostalgiaItemId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        references: { model: 'nostalgiaItems', key: 'id' }
+        references: { model: 'nostalgiaItems', key: 'id' },
       },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -90,17 +88,17 @@ module.exports = {
       characterId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        references: { model: 'characters', key: 'id' }
+        references: { model: 'characters', key: 'id' },
       },
       nostalgiaItemId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        references: { model: 'nostalgiaItems', key: 'id' }
+        references: { model: 'nostalgiaItems', key: 'id' },
       },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -110,17 +108,17 @@ module.exports = {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
-        references: { model: 'decades', key: 'id' }
+        references: { model: 'decades', key: 'id' },
       },
       nostalgiaItemId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        references: { model: 'nostalgiaItems', key: 'id' }
+        references: { model: 'nostalgiaItems', key: 'id' },
       },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -129,17 +127,17 @@ module.exports = {
       tagId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        references: { model: 'tags', key: 'id' }
+        references: { model: 'tags', key: 'id' },
       },
       nostalgiaItemId: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        references: { model: 'nostalgiaItems', key: 'id' }
+        references: { model: 'nostalgiaItems', key: 'id' },
       },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -169,5 +167,5 @@ module.exports = {
     await queryInterface.dropTable('nostalgiaDecades')
 
     return queryInterface.dropTable('nostalgiaTags')
-  }
+  },
 }

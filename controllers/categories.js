@@ -5,10 +5,10 @@ const getNostalgiaItemsByCategory = async (request, response) => {
     const { category } = request.params
     const matchingItems = await models.categories.findAll({
       include: [{
-        model: models.nostalgiaItems
+        model: models.nostalgiaItems,
       }],
       where: {
-        category: { [models.Op.like]: `%${category.toLowerCase()}%` }
+        category: { [models.Op.like]: `%${category.toLowerCase()}%` },
       },
     })
 

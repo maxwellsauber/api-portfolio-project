@@ -2,15 +2,15 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
+const {
+  after, afterEach, before, beforeEach, describe, it,
+} = require('mocha')
 const models = require('../../models')
 const {
-  after, afterEach, before, beforeEach, describe, it
-} = require('mocha')
-const {
-  nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody, nostalgiaPatchBody, matchingDecade, matchingCategory, deleteItem
+  nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody, nostalgiaPatchBody, matchingDecade, matchingCategory, deleteItem,
 } = require('../mocks/nostalgiaItems')
 const {
-  getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem, updateNostalgiaItem, deleteNostalgiaItem, patchNostalgiaItem
+  getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem, updateNostalgiaItem, deleteNostalgiaItem, patchNostalgiaItem,
 } = require('../../controllers/nostalgiaItems.js')
 const { getNostalgiaItemsByDecade } = require('../../controllers/decades.js')
 const { getNostalgiaItemsByCategory } = require('../../controllers/categories.js')
@@ -129,11 +129,11 @@ describe('Controllers', () => {
           { model: models.categories },
           { model: models.characters },
           { model: models.tags },
-          { model: models.decades }
+          { model: models.decades },
         ],
         where: {
-          slug: { [models.Op.like]: `%${request.params.identifier.toLowerCase()}%` }
-        }
+          slug: { [models.Op.like]: `%${request.params.identifier.toLowerCase()}%` },
+        },
       })
 
       expect(stubbedSend).to.have.been.calledWith(matchingNostalgiaItem)
@@ -171,43 +171,43 @@ describe('Controllers', () => {
       }, true])
       stubbedTagsFindOrCreate.returns([{
         id: 66,
-        tag: ['science-fiction']
+        tag: ['science-fiction'],
       }, true])
       stubbeDecadesFindOrCreate.returns([{
         id: 66,
-        tag: '1970'
+        tag: '1970',
       }], true)
       stubbedCharactersFindOrCreate.onFirstCall().returns([{
         id: 66,
-        characters: 'Luke Skywalker'
+        characters: 'Luke Skywalker',
       }, true])
       stubbedCharactersFindOrCreate.onSecondCall().returns([{
         id: 3000,
-        characters: 'Darth Vader'
+        characters: 'Darth Vader',
       }, true])
       stubbedCategoriesFindOrCreate.returns([{
         id: 66,
-        category: 'movie'
+        category: 'movie',
       }, true])
       stubbedNostalgiaTagsFindOrCreate.returns([{
         tagId: 66,
-        nostalgiaItemId: 66
+        nostalgiaItemId: 66,
       }, true])
       stubbedNostalgiaCategoiesFindOrCreate.returns([{
         categoryId: 66,
-        nostalgiaItemId: 66
+        nostalgiaItemId: 66,
       }, true])
       stubbedNostalgiaCharactersFindOrCreate.onFirstCall().returns([{
         characterId: 66,
-        nostalgiaItemId: 66
+        nostalgiaItemId: 66,
       }, true])
       stubbedNostalgiaCharactersFindOrCreate.onSecondCall().returns([{
         characterId: 66,
-        nostalgiaItemId: 3000
+        nostalgiaItemId: 3000,
       }, true])
       stubbedNostalgiaDecadesFindOrCreate.returns([{
         decadeId: 66,
-        nostalgiaItemId: 66
+        nostalgiaItemId: 66,
       }, true])
 
       await createNewNostalgiaItem(request, response)
@@ -282,43 +282,43 @@ describe('Controllers', () => {
       }, true])
       stubbedTagsFindOrCreate.returns([{
         id: 66,
-        tag: ['science-fiction']
+        tag: ['science-fiction'],
       }, true])
       stubbeDecadesFindOrCreate.returns([{
         id: 66,
-        tag: '1970'
+        tag: '1970',
       }], true)
       stubbedCharactersFindOrCreate.onFirstCall().returns([{
         id: 66,
-        characters: 'Luke Skywalker'
+        characters: 'Luke Skywalker',
       }, true])
       stubbedCharactersFindOrCreate.onSecondCall().returns([{
         id: 3000,
-        characters: 'Darth Vader'
+        characters: 'Darth Vader',
       }, true])
       stubbedCategoriesFindOrCreate.returns([{
         id: 66,
-        category: 'movie'
+        category: 'movie',
       }, true])
       stubbedNostalgiaTagsFindOrCreate.returns([{
         tagId: 66,
-        nostalgiaItemId: 66
+        nostalgiaItemId: 66,
       }, true])
       stubbedNostalgiaCategoiesFindOrCreate.returns([{
         categoryId: 66,
-        nostalgiaItemId: 66
+        nostalgiaItemId: 66,
       }, true])
       stubbedNostalgiaCharactersFindOrCreate.onFirstCall().returns([{
         characterId: 66,
-        nostalgiaItemId: 66
+        nostalgiaItemId: 66,
       }, true])
       stubbedNostalgiaCharactersFindOrCreate.onSecondCall().returns([{
         characterId: 66,
-        nostalgiaItemId: 3000
+        nostalgiaItemId: 3000,
       }, true])
       stubbedNostalgiaDecadesFindOrCreate.returns([{
         decadeId: 66,
-        nostalgiaItemId: 66
+        nostalgiaItemId: 66,
       }, true])
 
       await updateNostalgiaItem(request, response)
@@ -358,11 +358,11 @@ describe('Controllers', () => {
 
       expect(stubbedFindAllDecades).to.have.been.calledWith({
         include: [
-          { model: models.nostalgiaItems }
+          { model: models.nostalgiaItems },
         ],
         where: {
-          decade: { [models.Op.like]: `%${request.params.decade.toLowerCase()}%` }
-        }
+          decade: { [models.Op.like]: `%${request.params.decade.toLowerCase()}%` },
+        },
       })
 
       expect(stubbedSend).to.have.been.calledWith(matchingDecade)
@@ -397,11 +397,11 @@ describe('Controllers', () => {
 
       expect(stubbedFindAlCategories).to.have.been.calledWith({
         include: [
-          { model: models.nostalgiaItems }
+          { model: models.nostalgiaItems },
         ],
         where: {
-          category: { [models.Op.like]: `%${request.params.category.toLowerCase()}%` }
-        }
+          category: { [models.Op.like]: `%${request.params.category.toLowerCase()}%` },
+        },
       })
 
       expect(stubbedSend).to.have.been.calledWith(matchingCategory)

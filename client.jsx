@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Novels from './components/NostalgiaItems'
+// import NostalgiaItem from './components/NostalgiaItem'
+import NostalgiaItems from './components/NostalgiaItems'
 
 render(
-  <Novels />,
+  <NostalgiaItems />,
   document.getElementById('root'),
 )

@@ -1,12 +1,10 @@
-const decades = (connection, sequelize) => {
-  return connection.define('decades', {
-    id: { type: sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-    decade: { type: sequelize.STRING, allowNull: false },
-  }, {
-    defaultScope: { attributes: { exclude: ['deletedAt', 'createdAt', 'updatedAt'] } }
-  }, {
-    paranoid: true
-  })
-}
+const decades = (connection, sequelize) => connection.define('decades', {
+  id: { type: sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+  decade: { type: sequelize.STRING, allowNull: false },
+}, {
+  defaultScope: { attributes: { exclude: ['deletedAt', 'createdAt', 'updatedAt'] } },
+}, {
+  paranoid: true,
+})
 
 module.exports = decades

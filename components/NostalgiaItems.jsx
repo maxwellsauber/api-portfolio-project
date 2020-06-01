@@ -10,10 +10,10 @@ export default () => {
 
   useEffect(() => {
     async function pullData() {
-      const novels = await retrieveItems()
+      const items = await retrieveItems()
 
-      setItemList(novels)
-      setFilterItemList(novels)
+      setItemList(items)
+      setFilterItemList(items)
     }
     pullData()
   }, [])
@@ -25,7 +25,7 @@ export default () => {
   }, [searchTerm])
 
   return (
-    <div className="form">
+    <div>
       <h1>Nostalgia Items</h1>
       <Search term={searchTerm} setter={setSearchTerm} />
       <ul>
@@ -34,6 +34,7 @@ export default () => {
             <NostalgiaItem
               key={item.id}
               name={item.name}
+              slug={item.slug}
             />
           ))
         }

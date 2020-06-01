@@ -3,26 +3,26 @@ const nostalgiaList = [
     id: 1,
     name: 'Teenage Mutant Ninja Turtles',
     description: 'Pizza-eating turtles protect their city under the guidance of a rat',
-    slug: 'teenage-mutant-ninja-turtles'
+    slug: 'teenage-mutant-ninja-turtles',
   },
   {
     id: 2,
     name: 'Nerf Football',
     description: 'A vibrant squishy football',
-    slug: 'nerf-football'
+    slug: 'nerf-football',
   },
   {
     id: 3,
     name: 'Back to the Future',
     description: 'A creepy old man tricks a boy to go back in time so he can kiss his mother',
-    slug: 'back-to-the-future'
+    slug: 'back-to-the-future',
   },
   {
     id: 4,
     name: 'Ren and Stimpy',
     description: 'An angry dog and stupid cat endure bizzare adventures',
-    slug: 'ren-and-stimpy'
-  }
+    slug: 'ren-and-stimpy',
+  },
 ]
 
 const matchingNostalgiaItem = [
@@ -39,9 +39,9 @@ const matchingNostalgiaItem = [
           categoryId: 3,
           nostalgiaItemId: 3,
           createdAt: '2020-05-24T0:1:56.000Z',
-          updatedAt: '2020-05-24T0:1:56.000Z'
-        }
-      }
+          updatedAt: '2020-05-24T0:1:56.000Z',
+        },
+      },
     ],
     characters: [
       {
@@ -51,8 +51,8 @@ const matchingNostalgiaItem = [
           characterId: 4,
           nostalgiaItemId: 3,
           createdAt: '2020-05-24T0:1:56.000Z',
-          updatedAt: '2020-05-24T0:1:56.000Z'
-        }
+          updatedAt: '2020-05-24T0:1:56.000Z',
+        },
       },
       {
         id: 5,
@@ -61,9 +61,9 @@ const matchingNostalgiaItem = [
           characterId: 5,
           nostalgiaItemId: 3,
           createdAt: '2020-05-24T0:1:56.000Z',
-          updatedAt: '2020-05-24T0:1:56.000Z'
-        }
-      }
+          updatedAt: '2020-05-24T0:1:56.000Z',
+        },
+      },
     ],
     tags: [
       {
@@ -73,8 +73,8 @@ const matchingNostalgiaItem = [
           tagId: 1,
           nostalgiaItemId: 3,
           createdAt: '2020-05-24T0:1:56.000Z',
-          updatedAt: '2020-05-24T0:1:56.000Z'
-        }
+          updatedAt: '2020-05-24T0:1:56.000Z',
+        },
       },
       {
         id: 5,
@@ -83,9 +83,9 @@ const matchingNostalgiaItem = [
           tagId: 5,
           nostalgiaItemId: 3,
           createdAt: '2020-05-24T0:1:56.000Z',
-          updatedAt: '2020-05-24T0:1:56.000Z'
-        }
-      }
+          updatedAt: '2020-05-24T0:1:56.000Z',
+        },
+      },
     ],
     decades: [
       {
@@ -95,11 +95,11 @@ const matchingNostalgiaItem = [
           decadeId: 2,
           nostalgiaItemId: 3,
           createdAt: '2020-05-24T0:1:56.000Z',
-          updatedAt: '2020-05-24T0:1:56.000Z'
-        }
-      }
-    ]
-  }
+          updatedAt: '2020-05-24T0:1:56.000Z',
+        },
+      },
+    ],
+  },
 ]
 
 const deleteItem =
@@ -116,9 +116,9 @@ const deleteItem =
         categoryId: 3,
         nostalgiaItemId: 3,
         createdAt: '2020-05-24T0:1:56.000Z',
-        updatedAt: '2020-05-24T0:1:56.000Z'
-      }
-    }
+        updatedAt: '2020-05-24T0:1:56.000Z',
+      },
+    },
   ],
   characters: [
     {
@@ -128,8 +128,8 @@ const deleteItem =
         characterId: 4,
         nostalgiaItemId: 3,
         createdAt: '2020-05-24T0:1:56.000Z',
-        updatedAt: '2020-05-24T0:1:56.000Z'
-      }
+        updatedAt: '2020-05-24T0:1:56.000Z',
+      },
     },
     {
       id: 5,
@@ -138,9 +138,9 @@ const deleteItem =
         characterId: 5,
         nostalgiaItemId: 3,
         createdAt: '2020-05-24T0:1:56.000Z',
-        updatedAt: '2020-05-24T0:1:56.000Z'
-      }
-    }
+        updatedAt: '2020-05-24T0:1:56.000Z',
+      },
+    },
   ],
   tags: [
     {
@@ -150,8 +150,8 @@ const deleteItem =
         tagId: 1,
         nostalgiaItemId: 3,
         createdAt: '2020-05-24T0:1:56.000Z',
-        updatedAt: '2020-05-24T0:1:56.000Z'
-      }
+        updatedAt: '2020-05-24T0:1:56.000Z',
+      },
     },
     {
       id: 5,
@@ -160,9 +160,9 @@ const deleteItem =
         tagId: 5,
         nostalgiaItemId: 3,
         createdAt: '2020-05-24T0:1:56.000Z',
-        updatedAt: '2020-05-24T0:1:56.000Z'
-      }
-    }
+        updatedAt: '2020-05-24T0:1:56.000Z',
+      },
+    },
   ],
   decades: [
     {
@@ -172,10 +172,10 @@ const deleteItem =
         decadeId: 2,
         nostalgiaItemId: 3,
         createdAt: '2020-05-24T0:1:56.000Z',
-        updatedAt: '2020-05-24T0:1:56.000Z'
-      }
-    }
-  ]
+        updatedAt: '2020-05-24T0:1:56.000Z',
+      },
+    },
+  ],
 }
 
 const nostalgiaPostBody =
@@ -186,12 +186,12 @@ const nostalgiaPostBody =
   tags: ['science-fiction'],
   decades: ['1970'],
   characters: ['Luke Skywalker', 'Darth Vader'],
-  categories: ['movie']
+  categories: ['movie'],
 }
 
 const nostalgiaPatchBody =
 {
-  name: 'Star Wars'
+  name: 'Star Wars',
 }
 
 const matchingDecade = [
@@ -208,11 +208,11 @@ const matchingDecade = [
           decadeId: 1,
           nostalgiaItemId: 4,
           createdAt: '2020-05-24T23:17:19.000Z',
-          updatedAt: '2020-05-24T23:17:19.000Z'
-        }
-      }
-    ]
-  }
+          updatedAt: '2020-05-24T23:17:19.000Z',
+        },
+      },
+    ],
+  },
 ]
 
 const matchingCategory = [
@@ -229,8 +229,8 @@ const matchingCategory = [
           categoryId: 2,
           nostalgiaItemId: 1,
           createdAt: '2020-05-26T13:58:48.000Z',
-          updatedAt: '2020-05-26T13:58:48.000Z'
-        }
+          updatedAt: '2020-05-26T13:58:48.000Z',
+        },
       },
       {
         id: 2,
@@ -241,11 +241,11 @@ const matchingCategory = [
           categoryId: 2,
           nostalgiaItemId: 2,
           createdAt: '2020-05-26T13:58:48.000Z',
-          updatedAt: '2020-05-26T13:58:48.000Z'
-        }
-      }
-    ]
-  }
+          updatedAt: '2020-05-26T13:58:48.000Z',
+        },
+      },
+    ],
+  },
 ]
 
 module.exports = {
@@ -255,6 +255,5 @@ module.exports = {
   nostalgiaPatchBody,
   matchingDecade,
   matchingCategory,
-  deleteItem
+  deleteItem,
 }
-
