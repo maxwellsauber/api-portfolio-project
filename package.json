@@ -45,7 +45,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.20.0",
     "mocha": "^7.2.0",
-    "nodemon": "^2.0.3",
     "pug-lint": "^2.6.0",
     "sinon": "^9.0.2",
     "sinon-chai": "^3.5.0",

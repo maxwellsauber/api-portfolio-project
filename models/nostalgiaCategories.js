@@ -9,4 +9,4 @@ const nostalgiaCategories = (
   paranoid: true,
 })
 
-module.exports = nostalgiaCategories
+export default nostalgiaCategories

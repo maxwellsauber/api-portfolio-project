@@ -7,4 +7,4 @@ const decades = (connection, sequelize) => connection.define('decades', {
   paranoid: true,
 })
 
-module.exports = decades
+export default decades

@@ -9,4 +9,4 @@ const nostalgiaItems = (connection, sequelize) => connection.define('nostalgiaIt
   paranoid: true,
 })
 
-module.exports = nostalgiaItems
+export default nostalgiaItems

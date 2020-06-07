@@ -1,18 +1,18 @@
-const bodyParser = require('body-parser')
-const express = require('express')
-const path = require('path')
+import express from 'express'
+import bodyParser from 'body-parser'
+import path from 'path'
 
-const {
+import {
   deleteNostalgiaItem,
   getAllNostalgiaItems,
   getNostalgiaItemsByIdentifierWithAllLinkedData,
   createNewNostalgiaItem,
   patchNostalgiaItem,
   updateNostalgiaItem,
-} = require('./controllers/nostalgiaItems')
+} from './controllers/nostalgiaItems'
 
-const { getNostalgiaItemsByCategory } = require('./controllers/categories')
-const { getNostalgiaItemsByDecade } = require('./controllers/decades')
+import { getNostalgiaItemsByCategory } from './controllers/categories'
+import { getNostalgiaItemsByDecade } from './controllers/decades'
 
 const app = express()
 

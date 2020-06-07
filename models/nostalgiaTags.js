@@ -7,4 +7,4 @@ const nostalgiaTags = (connection, sequelize, nostalgiaItems, tags) => connectio
   paranoid: true,
 })
 
-module.exports = nostalgiaTags
+export default nostalgiaTags

@@ -7,4 +7,4 @@ const nostalgiaDecades = (connection, sequelize, nostalgiaItems, decades) => con
   paranoid: true,
 })
 
-module.exports = nostalgiaDecades
+export default nostalgiaDecades

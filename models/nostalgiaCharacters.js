@@ -9,4 +9,4 @@ const nostalgiaCharacters = (
   paranoid: true,
 })
 
-module.exports = nostalgiaCharacters
+export default nostalgiaCharacters

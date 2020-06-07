@@ -7,4 +7,4 @@ const characters = (connection, sequelize) => connection.define('characters', {
   paranoid: true,
 })
 
-module.exports = characters
+export default characters

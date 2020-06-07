@@ -7,4 +7,4 @@ const tags = (connection, sequelize) => connection.define('tags', {
   paranoid: true,
 })
 
-module.exports = tags
+export default tags

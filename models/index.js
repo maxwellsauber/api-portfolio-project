@@ -1,16 +1,14 @@
-
-const Sequelize = require('sequelize')
-const allConfigs = require('../config/sequelize')
-
-const nostalgiaItemsModels = require('./nostalgiaItems')
-const categoriesModels = require('./categories')
-const charactersModels = require('./characters')
-const decadesModels = require('./decades')
-const tagsModels = require('./tags')
-const nostalgiaCategoriesModels = require('./nostalgiaCategories')
-const nostalgiaCharactersModels = require('./nostalgiaCharacters')
-const nostalgiaDecadesModels = require('./nostalgiaDecades')
-const nostalgiaTagsModels = require('./nostalgiaTags')
+import Sequelize from 'sequelize'
+import allConfigs from '../config/sequelize'
+import nostalgiaItemsModels from './nostalgiaItems'
+import categoriesModels from './categories'
+import charactersModels from './characters'
+import decadesModels from './decades'
+import tagsModels from './tags'
+import nostalgiaCategoriesModels from './nostalgiaCategories'
+import nostalgiaCharactersModels from './nostalgiaCharacters'
+import nostalgiaDecadesModels from './nostalgiaDecades'
+import nostalgiaTagsModels from './nostalgiaTags'
 
 const environment = process.env.NODE_ENV || 'development'
 const config = allConfigs[environment]
@@ -38,7 +36,7 @@ decades.belongsToMany(nostalgiaItems, { through: nostalgiaDecades })
 nostalgiaItems.belongsToMany(tags, { through: nostalgiaTags })
 tags.belongsToMany(nostalgiaItems, { through: nostalgiaTags })
 
-module.exports = {
+export default {
   nostalgiaItems,
   categories,
   characters,

@@ -1,6 +1,6 @@
-const models = require('../models')
+import models from '../models'
 
-const getNostalgiaItemsByCategory = async (request, response) => {
+export const getNostalgiaItemsByCategory = async (request, response) => {
   try {
     const { category } = request.params
     const matchingItems = await models.categories.findAll({
@@ -21,4 +21,4 @@ const getNostalgiaItemsByCategory = async (request, response) => {
   }
 }
 
-module.exports = { getNostalgiaItemsByCategory }
+export default getNostalgiaItemsByCategory

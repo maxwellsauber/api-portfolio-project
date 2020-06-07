@@ -7,4 +7,4 @@ const categories = (connection, sequelize) => connection.define('categories', {
   paranoid: true,
 })
 
-module.exports = categories
+export default categories

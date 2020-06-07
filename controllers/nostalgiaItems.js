@@ -1,6 +1,6 @@
-const models = require('../models')
+import models from '../models'
 
-const getAllNostalgiaItems = async (request, response) => {
+export const getAllNostalgiaItems = async (request, response) => {
   try {
     const allNostalgiaItems = await models.nostalgiaItems.findAll()
 
@@ -11,7 +11,7 @@ const getAllNostalgiaItems = async (request, response) => {
   }
 }
 
-const getNostalgiaItemsByIdentifierWithAllLinkedData = async (request, response) => {
+export const getNostalgiaItemsByIdentifierWithAllLinkedData = async (request, response) => {
   try {
     const { identifier } = request.params
     const matchingItems = await models.nostalgiaItems.findAll({
@@ -35,7 +35,7 @@ const getNostalgiaItemsByIdentifierWithAllLinkedData = async (request, response)
   }
 }
 
-const createNewNostalgiaItem = async (request, response) => {
+export const createNewNostalgiaItem = async (request, response) => {
   try {
     const {
       categories, characters, decades, description, name, slug, tags,
@@ -122,7 +122,7 @@ const createNewNostalgiaItem = async (request, response) => {
   }
 }
 
-const updateNostalgiaItem = async (request, response) => {
+export const updateNostalgiaItem = async (request, response) => {
   try {
     const { id } = request.params
 
@@ -220,7 +220,7 @@ const updateNostalgiaItem = async (request, response) => {
   }
 }
 
-const deleteNostalgiaItem = async (request, response) => {
+export const deleteNostalgiaItem = async (request, response) => {
   try {
     const { slug } = request.params
 
@@ -240,7 +240,7 @@ const deleteNostalgiaItem = async (request, response) => {
   }
 }
 
-const patchNostalgiaItem = async (request, response) => {
+export const patchNostalgiaItem = async (request, response) => {
   try {
     const { id } = request.params
 
@@ -266,13 +266,4 @@ const patchNostalgiaItem = async (request, response) => {
   } catch (error) {
     return response.status(500).send('Unknown error while patching item')
   }
-}
-
-module.exports = {
-  getAllNostalgiaItems,
-  getNostalgiaItemsByIdentifierWithAllLinkedData,
-  createNewNostalgiaItem,
-  deleteNostalgiaItem,
-  updateNostalgiaItem,
-  patchNostalgiaItem,
 }
