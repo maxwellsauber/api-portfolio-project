@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import NostalgiaItem from './NostalgiaItem'
-import Search from './Search'
+import Page from '../components/Page'
+import NostalgiaItem from '../components/NostalgiaItem'
+import Search from '../components/Search'
+import Title from '../components/Title'
 import { filterItems, retrieveItems } from '../utils/items'
 
 export default () => {
@@ -25,8 +27,8 @@ export default () => {
   }, [searchTerm])
 
   return (
-    <div>
-      <h1>Nostalgia Items</h1>
+    <Page>
+      <Title />
       <Search term={searchTerm} setter={setSearchTerm} />
       <ul>
         {
@@ -39,6 +41,6 @@ export default () => {
           ))
         }
       </ul>
-    </div>
+    </Page>
   )
 }
