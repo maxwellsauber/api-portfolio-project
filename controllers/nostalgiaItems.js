@@ -116,7 +116,7 @@ const createNewNostalgiaItem = async (request, response) => {
       return categoryId
     })
 
-    return response.status(201).send(`We remember ${newNostalgiaItem.slug}! How could you forget!?`)
+    return response.status(201).send(`New item created with ID:${newNostalgiaItem.id}`)
   } catch (error) {
     return response.status(500).send('500 Error - Unable to create nostalgia item')
   }
@@ -214,7 +214,7 @@ const updateNostalgiaItem = async (request, response) => {
       return category
     })
 
-    return response.status(201).send('Thanks for the UPDATE')
+    return response.status(201).send(`Thanks for the UPDATE for item ID:${id}`)
   } catch (error) {
     return response.status(500).send('500 Error - Unable to update nostalgia item')
   }

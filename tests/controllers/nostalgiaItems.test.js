@@ -43,6 +43,8 @@ describe('Controllers', () => {
   let stubbedFindAllDecades
   let stubbedFindAlCategories
 
+  let stubbedNostalgiaItemsUpdate
+
   let stubbedNostalgiaItemsDestroy
   let stubbedNostalgiaTagsDestroy
   let stubbedNostalgiaCategoriesDestroy
@@ -71,6 +73,8 @@ describe('Controllers', () => {
 
     stubbedFindAllDecades = sandbox.stub(models.decades, 'findAll')
     stubbedFindAlCategories = sandbox.stub(models.categories, 'findAll')
+
+    stubbedNostalgiaItemsUpdate = sandbox.stub(models.nostalgiaItems, 'update')
 
     stubbedNostalgiaItemsDestroy = sandbox.stub(models.nostalgiaItems, 'destroy')
     stubbedNostalgiaTagsDestroy = sandbox.stub(models.nostalgiaTags, 'destroy')
@@ -213,7 +217,7 @@ describe('Controllers', () => {
       await createNewNostalgiaItem(request, response)
 
       expect(stubbedStatus).to.have.been.calledWith(201)
-      expect(stubbedStatusDotSend).to.have.been.calledWith('We remember star-wars! How could you forget!?')
+      expect(stubbedStatusDotSend).to.have.been.calledWith('New item created with ID:66')
     })
 
     it('returns a 400 status when not all required fields are provided (Example: missing required "category")', async () => {
@@ -256,7 +260,7 @@ describe('Controllers', () => {
 
       await patchNostalgiaItem(request, response)
 
-      expect(stubbedNostalgiaItemsFindOrCreate).to.have.callCount(0)
+      expect(stubbedNostalgiaItemsUpdate).to.have.callCount(0)
       expect(stubbedStatus).to.have.been.calledWith(400)
       expect(stubbedStatusDotSend).to.have.been.calledWith('404 - Must provide "name", "description", or "slug"')
     })
@@ -324,7 +328,7 @@ describe('Controllers', () => {
       await updateNostalgiaItem(request, response)
 
       expect(stubbedStatus).to.have.been.calledWith(201)
-      expect(stubbedStatusDotSend).to.have.been.calledWith('Thanks for the UPDATE')
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Thanks for the UPDATE for item ID:1')
     })
     it('returns a 400 status when not all required fields are provided (Example: missing required "category")', async () => {
       const { name, decade } = nostalgiaPostBody

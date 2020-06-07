@@ -1,9 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
-// import NostalgiaItem from './components/NostalgiaItem'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import NostalgiaItems from './components/NostalgiaItems'
 
 render(
-  <NostalgiaItems />,
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" component={NostalgiaItems} />
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root'),
 )
