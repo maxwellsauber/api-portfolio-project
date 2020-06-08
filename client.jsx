@@ -8,8 +8,8 @@ import NostalgiaItems from './pages/NostalgiaItems'
 render(
   <BrowserRouter>
     <Switch>
-      <Route path="item" component={ItemPage} />
       <Route exact path="/" component={NostalgiaItems} />
+      <Route path="/item" component={ItemPage} />
       <Route path="*" component={ErrorPage} />
     </Switch>
   </BrowserRouter>,

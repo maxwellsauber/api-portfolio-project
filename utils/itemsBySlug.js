@@ -1,7 +1,7 @@
 import nostalgiaItemBySlug from '../actions/nostalgiaItemBySlug'
 
 export const getItemSlugFromUrl = location => (location && location.pathname
-  ? location.pathname.split('/all/').pop()
+  ? location.pathname.split('/item/').pop()
   : ''
 )
 export const retrieveItems = async (location) => {
@@ -9,9 +9,15 @@ export const retrieveItems = async (location) => {
 
   if (!itemSlug) return { details: {}, categories: [] }
 
-  const { id, name, slug, categories } = await nostalgiaItemBySlug(itemSlug)
+  const [data] = await nostalgiaItemBySlug(itemSlug)
+  const {
+    id, name, slug, categories, characters, decades, description, tags,
+  } = data
+
 
   if (!id || !name || !slug || !categories) return { details: {}, categories: [] }
 
-  return { categories, details: { id, name, slug } }
+  return {
+    id, name, slug, categories, characters, decades, description, tags,
+  }
 }

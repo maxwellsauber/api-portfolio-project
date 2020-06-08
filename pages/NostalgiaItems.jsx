@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Page from '../components/Page'
-import NostalgiaItem from '../components/NostalgiaItem'
+import Nostalgia from '../components/Nostalgia'
 import Search from '../components/Search'
 import Title from '../components/Title'
 import { filterItems, retrieveItems } from '../utils/items'
@@ -33,8 +33,9 @@ export default () => {
       <ul>
         {
           filterItemList.map(item => (
-            <NostalgiaItem
+            <Nostalgia
               key={item.id}
+              id={item.id}
               name={item.name}
               slug={item.slug}
             />
