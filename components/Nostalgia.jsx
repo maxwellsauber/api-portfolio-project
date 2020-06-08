@@ -3,14 +3,15 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Nostalgia = styled.li`
-  color: yellow;
+  color: pink;
   font-size: 20px;
   margin: 10px;
   text-align: center;
 `
 
 const Link = styled(NavLink)`
-  color: yellow;
+  color: 
+  #ffff00;
   text-decoration: none;
 `
 

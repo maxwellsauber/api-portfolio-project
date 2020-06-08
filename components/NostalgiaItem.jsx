@@ -18,7 +18,7 @@ const NostalgiaItem = styled.div`
 export default ({ id, decades, description, categories, characters, tags }) => (
   <>
     <NostalgiaItem key={id}>{description}</NostalgiaItem>
-    <div> Categories: </div>
+    <h3> Categories: </h3>
     <ul>
       {
         categories.map(category => (
@@ -27,7 +27,7 @@ export default ({ id, decades, description, categories, characters, tags }) => (
       }
     </ul>
 
-    <div> Decades: </div>
+    <h3> Decades: </h3>
     <ul>
       {
         decades.map(decade => (
@@ -36,7 +36,7 @@ export default ({ id, decades, description, categories, characters, tags }) => (
       }
     </ul>
 
-    <div> Characters: </div>
+    <h3> Characters: </h3>
     <ul>
       {
         characters.map(character => (
@@ -45,7 +45,7 @@ export default ({ id, decades, description, categories, characters, tags }) => (
       }
     </ul>
 
-    <div> Tags: </div>
+    <h3> Tags: </h3>
     <ul>
       {
         tags.map(tag => (
