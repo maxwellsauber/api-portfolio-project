@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 const GoBack = styled.a`
-  font-family: cursive !important;
-  color: #ffff00;  
+  font-family: cursive;
   font-size: 50px;
   margin-bottom: 10px;
 `

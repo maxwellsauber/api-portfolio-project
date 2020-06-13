@@ -5,8 +5,8 @@ const Characters = styled.li`
   color: pink;
   font-size: 20px;
   margin-bottom: 10px;
-  list-style-position: inside;
 `
+
 export default ({ id, name }) => (
   <Characters key={id}>{name}</Characters>
 )
