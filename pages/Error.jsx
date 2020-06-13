@@ -1,10 +1,21 @@
 import React from 'react'
+import styled from 'styled-components'
 import Page from '../components/Page'
-import Title from '../components/Title'
+
+const ErrorHeading = styled.div`
+  font-size: 100px;
+  margin-bottom: 20px;
+`
+const Error = styled.div`
+  font-size: 50px;
+  color:#ffff00
+`
 
 export default () => (
   <Page>
-    <Title />
-    <div>Sorry, unable to find the page you are looking for</div>
+    <ErrorHeading>Sorry!</ErrorHeading>
+    <Error>
+      Unable to find the page you are looking for.
+    </Error>
   </Page>
 )

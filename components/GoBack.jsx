@@ -5,7 +5,6 @@ import styled from 'styled-components'
 const GoBack = styled.a`
   font-family: cursive;
   font-size: 50px;
-  margin-bottom: 10px;
 `
 
 export default () => (

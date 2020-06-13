@@ -6,11 +6,8 @@ import Character from './Character'
 import Tag from './Tag'
 import GoBack from './GoBack'
 
-const NostalgiaItem = styled.div`
-  color: #00f3ff;  
-  font-size: 20px;
-  margin-bottom: 10px;
-`
+const NostalgiaItem = styled.div`color: #00f3ff; font-size:30px;`
+
 export default ({
   id, decades, description, categories, characters, tags,
 }) => (

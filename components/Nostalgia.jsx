@@ -2,17 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Nostalgia = styled.li`
-  color: pink;
-  font-size: 20px;
-  margin: 10px;
-  padding: 0px
-  text-align: center;
-  `
+const Nostalgia = styled.li`color: pink;`
 
-const Link = styled(NavLink)`
-  color: #ffff00;
-`
+const Link = styled(NavLink)`color: #ffff00;`
 
 export default (({ id, name, slug }) => (
   <Nostalgia key={id}>

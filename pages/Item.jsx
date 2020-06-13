@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Page from '../components/Page'
+import Sorry from '../components/Sorry'
 import Title from '../components/Title'
 import NostalgiaItem from '../components/NostalgiaItem'
 import { retrieveItems } from '../utils/itemsBySlug'
@@ -60,7 +61,7 @@ export default ({ location }) => {
 
             </>
           )
-          : (<div>Sorry, I do not know that</div>)
+          : (<Sorry>Sorry! Can&apos;t rememeber that right now.</Sorry>)
       }
     </Page>
 

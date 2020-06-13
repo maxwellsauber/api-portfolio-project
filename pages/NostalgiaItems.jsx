@@ -3,6 +3,7 @@ import Page from '../components/Page'
 import Nostalgia from '../components/Nostalgia'
 import Search from '../components/Search'
 import Title from '../components/Title'
+import Subtitle from '../components/Subtitle'
 import { filterItems, retrieveItems } from '../utils/items'
 
 export default () => {
@@ -29,6 +30,7 @@ export default () => {
   return (
     <Page>
       <Title />
+      <Subtitle />
       <Search term={searchTerm} setter={setSearchTerm} />
       <ul>
         {
