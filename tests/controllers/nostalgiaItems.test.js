@@ -1,22 +1,21 @@
 /* eslint-disable max-len */
-const chai = require('chai')
-const sinon = require('sinon')
-const sinonChai = require('sinon-chai')
-const {
+import chai, { expect } from 'chai'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
+import {
   after, afterEach, before, beforeEach, describe, it,
-} = require('mocha')
-const models = require('../../models')
-const {
+} from 'mocha'
+import models from '../../models'
+import {
   nostalgiaList, matchingNostalgiaItem, nostalgiaPostBody, nostalgiaPatchBody, matchingDecade, matchingCategory, deleteItem,
-} = require('../mocks/nostalgiaItems')
-const {
+} from '../mocks/nostalgiaItems'
+import {
   getAllNostalgiaItems, getNostalgiaItemsByIdentifierWithAllLinkedData, createNewNostalgiaItem, updateNostalgiaItem, deleteNostalgiaItem, patchNostalgiaItem,
-} = require('../../controllers/nostalgiaItems.js')
-const { getNostalgiaItemsByDecade } = require('../../controllers/decades.js')
-const { getNostalgiaItemsByCategory } = require('../../controllers/categories.js')
+} from '../../controllers/nostalgiaItems'
+import { getNostalgiaItemsByDecade } from '../../controllers/decades'
+import { getNostalgiaItemsByCategory } from '../../controllers/categories'
 
 chai.use(sinonChai)
-const { expect } = chai
 
 describe('Controllers', () => {
   let response

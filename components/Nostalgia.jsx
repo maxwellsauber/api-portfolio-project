@@ -6,17 +6,18 @@ const Nostalgia = styled.li`
   color: pink;
   font-size: 20px;
   margin: 10px;
+  padding: 0px
   text-align: center;
+  list-style-position: inside;
 `
 
 const Link = styled(NavLink)`
-  color: 
-  #ffff00;
+  color: #ffff00;
   text-decoration: none;
 `
 
 export default (({ id, name, slug }) => (
   <Nostalgia key={id}>
-    <Link to={`/item/${slug}`}>{`${name} (${slug})`}</Link>
+    <Link to={`/item/${slug}`}>{name}</Link>
   </Nostalgia>
 ))

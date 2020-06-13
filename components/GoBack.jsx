@@ -4,10 +4,9 @@ import styled from 'styled-components'
 
 const GoBack = styled.a`
   font-family: cursive !important;
-  color: yellow ;  
+  color: #ffff00;  
   font-size: 50px;
   margin-bottom: 10px;
-  list-style:none;
 `
 
 export default () => (

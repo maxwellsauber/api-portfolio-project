@@ -14,8 +14,7 @@ export const retrieveItems = async (location) => {
     id, name, slug, categories, characters, decades, description, tags,
   } = data
 
-
-  if (!id || !name || !slug || !categories) return { details: {}, categories: [] }
+  if (!id || !name || !slug) return { details: {}, categories: [] }
 
   return {
     id, name, slug, categories, characters, decades, description, tags,

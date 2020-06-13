@@ -5,7 +5,8 @@ const Categories = styled.li`
   color: red;
   font-size: 20px;
   margin-bottom: 10px;
-  list-style:none;
+  list-style-position: inside;
+
 `
 export default ({ id, name }) => (
   <Categories key={id}>{name}</Categories>
