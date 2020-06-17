@@ -61,7 +61,7 @@ export default ({ location }) => {
 
             </>
           )
-          : (<Sorry>Sorry! Can&apos;t rememeber that right now.</Sorry>)
+          : (<Sorry />)
       }
     </Page>
 
