@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "node": "12.14.0"
+        }
+      }
+    ],
+    "@babel/react"
+  ],
+  "plugins": [
+    "babel-plugin-styled-components"
+  ]
+}

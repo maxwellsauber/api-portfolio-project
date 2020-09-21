@@ -1,0 +1,23 @@
+section#put-root
+  h2 Route: /{id}
+  p Example URL - <a href='#'>http://localhost:1990/api/1</a>
+  
+  h3 Method
+  p PUT
+  
+  h3 Headers
+  pre.code Content-Type application/json
+  h3 Body
+  pre.code.
+    {
+      "name": "My Updated Toy",
+      "description": "I remember updating things",
+      "slug": "my-new-toy-slug",
+      "tags": ["updated-tag1", "updated-tag2"],
+      "decades" : ["1960", "1970"],
+      "characters" : ["updated-character1", "updated-character2"],
+      "categories" : ["updated-category1", "updated-character2"]
+    }
+
+  h3 Description
+  p Replaces existing {slug} nostalgia item data with data provided in the body. 
